@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8f28e1deacf19418bf383e4a6a7d64, type: 3}
+  m_Name: GH - INTRO
+  m_EditorClassIdentifier: 
+  actorsInScene:
+  - Marmo
+  lines:
+  - nameOfLine: INICIO DE DIALOGO
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 3
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: "Linea 0- Qu\xE9 pas\xF3!?!?!"
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Qu\xE9 pas\xF3?!?!"
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: 
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Qu\xE9 me tom\xE9 anoche?!"
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 3
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: 3- Se abre el telon
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: Introduccion
+  - nameOfLine: 
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "No se donde estoy... pero algo deb\xEDa hacer hoy..."
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: El certamen de matematicas
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "\xA1\xA1\xA1 EL CERT\xC1MEN DE MATEM\xC1TICAS !!! "
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: 
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "DEBO SALIR DE ESTA HABITACI\xD3N "
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: Si esto fuese un videojuego...
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Si esto fuese un videojuego... mover\xEDa con WASD y har\xEDa
+      funcionar las cosas con F."
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: 
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "O si estuviese en el celular ser\xEDa click y doble click... respectivamente. "
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: END OF DIALOGUE
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 1
+    dialogueEventsName: 

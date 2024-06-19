@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Conveyor-RIGHT-mid 1
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 1379457854, guid: 501a381628dcd384da7dcceaa53e70d6, type: 3}
+  - {fileID: 1296112217, guid: 501a381628dcd384da7dcceaa53e70d6, type: 3}
+  - {fileID: 1146373534, guid: 501a381628dcd384da7dcceaa53e70d6, type: 3}
+  - {fileID: -2017064411, guid: 501a381628dcd384da7dcceaa53e70d6, type: 3}
+  - {fileID: 1914824248, guid: 501a381628dcd384da7dcceaa53e70d6, type: 3}
+  - {fileID: 1316002357, guid: 501a381628dcd384da7dcceaa53e70d6, type: 3}
+  - {fileID: -1893762822, guid: 501a381628dcd384da7dcceaa53e70d6, type: 3}
+  - {fileID: -267166535, guid: 501a381628dcd384da7dcceaa53e70d6, type: 3}
+  m_MinSpeed: 60
+  m_MaxSpeed: 60
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237224a6a46fd444bbc270a8ae24ffc3, type: 3}
+  m_Name: Test Cutscene
+  m_EditorClassIdentifier: 
+  actorsInScene:
+  - {fileID: 11400000, guid: 08b5f983ec7fc4d45a2542870347ed76, type: 2}
+  - {fileID: 11400000, guid: 588c3601b63378c40aa434a07b4f9563, type: 2}
+  dialogueLines:
+  - language: 
+    actorTalking: {fileID: 11400000, guid: 08b5f983ec7fc4d45a2542870347ed76, type: 2}
+    actorListening: {fileID: 11400000, guid: 588c3601b63378c40aa434a07b4f9563, type: 2}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    actorListeningClip: {fileID: 0}
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+  - language: 
+    actorTalking: {fileID: 0}
+    actorListening: {fileID: 0}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    actorListeningClip: {fileID: 0}
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+  - language: 
+    actorTalking: {fileID: 0}
+    actorListening: {fileID: 0}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    actorListeningClip: {fileID: 0}
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0

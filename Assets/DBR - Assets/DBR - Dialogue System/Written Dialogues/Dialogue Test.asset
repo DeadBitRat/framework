@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8f28e1deacf19418bf383e4a6a7d64, type: 3}
+  m_Name: Dialogue Test
+  m_EditorClassIdentifier: 
+  actorsInScene:
+  - Jacob
+  - "M\xE1ximo"
+  lines:
+  - line: 0
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Hola! C\xF3mo est\xE1s? "
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - line: 0
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Bien gracias, y t\xFA? "
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - line: 0
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 'Bien. '
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - line: 0
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 1

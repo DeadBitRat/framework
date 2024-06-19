@@ -1,0 +1,338 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8f28e1deacf19418bf383e4a6a7d64, type: 3}
+  m_Name: "DBR - El Mar del Tiempo Perdido ESPA\xD1OL"
+  m_EditorClassIdentifier: 
+  actorsInScene:
+  - Jacob
+  - "M\xE1ximo"
+  lines:
+  - nameOfLine: Jugando Jacob...
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 7400000, guid: 660af4ce2d434a847977bf7523e21a98, type: 2}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: Jugando Max
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 7400000, guid: 6250904e1a5748b40a0819a5d2fa31bb, type: 2}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: Jugando Jacob
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 7400000, guid: 660af4ce2d434a847977bf7523e21a98, type: 2}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: Jugando Max
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 7400000, guid: 6250904e1a5748b40a0819a5d2fa31bb, type: 2}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 'Jugando Jacob... '
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 7400000, guid: 660af4ce2d434a847977bf7523e21a98, type: 2}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: Max pensando y Jacop Beat 2
+    indexActorTalking: 1
+    actorsListening:
+    - actorName: Jacob
+      actorListeningClip: {fileID: 7400000, guid: 77c6ab50d08f2e242992098eca276197, type: 2}
+    preTalkingAnimation: {fileID: 7400000, guid: a2a7bcb71bc6c734da77ae43df0524ea, type: 2}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 1
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: "\"D\xEDgame algo, don M\xE1ximo..\" "
+    indexActorTalking: 0
+    actorsListening:
+    - actorName: "M\xE1ximo"
+      actorListeningClip: {fileID: 7400000, guid: a9b53ed978221c843b5eb98f1550135f, type: 2}
+    preTalkingAnimation: {fileID: 7400000, guid: 615ab194cd4f0b14685af68d8a9c7d62, type: 2}
+    dialogueLine: "D\xEDgame algo, \nDon M\xE1ximo"
+    actorTalkingClip: {fileID: 7400000, guid: c44a70e399ff5f64088cccf414f0749e, type: 2}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 4
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: "7- Usted ser\xEDa capaz de..."
+    indexActorTalking: 0
+    actorsListening:
+    - actorName: "M\xE1ximo"
+      actorListeningClip: {fileID: 7400000, guid: a9b53ed978221c843b5eb98f1550135f, type: 2}
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Ser\xEDa usted capaz de enterrar viva a su esposa? "
+    actorTalkingClip: {fileID: 7400000, guid: c44a70e399ff5f64088cccf414f0749e, type: 2}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 3
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 8 - Seguro!
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 7400000, guid: a2a7bcb71bc6c734da77ae43df0524ea, type: 2}
+    dialogueLine: Seguro.
+    actorTalkingClip: {fileID: 7400000, guid: 49f75a6d0e289294b9617ab34d53c54c, type: 2}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: "#9 No me temblar\xEDa la mano"
+    indexActorTalking: 1
+    actorsListening:
+    - actorName: Jacob
+      actorListeningClip: {fileID: 7400000, guid: 479b7b33bcd9fb848af62ff444276d6c, type: 2}
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "No me temblar\xEDa la mano."
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 3
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 7400000, guid: 8c3195becfd4d134892450090152b547, type: 2}
+    dialogueLine: 'Parece que... '
+    actorTalkingClip: {fileID: 7400000, guid: 7de6b77ff505ff9449e2fc32a93693f3, type: 2}
+    postTalkingAnimation: {fileID: 7400000, guid: 660af4ce2d434a847977bf7523e21a98, type: 2}
+    secondsToNextLine: 0
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: ... Petra va a morir.
+    actorTalkingClip: {fileID: 7400000, guid: 7de6b77ff505ff9449e2fc32a93693f3, type: 2}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 3
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 'En ese caso... '
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 7400000, guid: 6250904e1a5748b40a0819a5d2fa31bb, type: 2}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 'No hay necesidad de... '
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: '... no hay necesidad de enterrarla viva. '
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 4
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: Jacob llora
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 7400000, guid: 3d92fef73cb933e46b4be9adc4506dbb, type: 2}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: "Qu\xE9 le pasa? "
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Qu\xE9 le pasa? "
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 'Anoche... '
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 7400000, guid: 44d0903507e218746a08c19816656176, type: 2}
+    dialogueLine: Anoche...
+    actorTalkingClip: {fileID: 7400000, guid: 7de6b77ff505ff9449e2fc32a93693f3, type: 2}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: "... ella oli\xF3 rosas. "
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "... sinti\xF3 olor a rosas que ven\xEDa desde el mar. "
+    actorTalkingClip: {fileID: 7400000, guid: 7de6b77ff505ff9449e2fc32a93693f3, type: 2}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 3
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: "Una se\xF1al"
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Siempre ha pedido una se\xF1al para cuando llegue su hora. "
+    actorTalkingClip: {fileID: 7400000, guid: 7de6b77ff505ff9449e2fc32a93693f3, type: 2}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: Decent People
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: Y quiere asegurarse de tener un entierro como la gente decente.
+    actorTalkingClip: {fileID: 7400000, guid: 7de6b77ff505ff9449e2fc32a93693f3, type: 2}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 2
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 'Not at sea... '
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 'No en el mar. '
+    actorTalkingClip: {fileID: 7400000, guid: 7de6b77ff505ff9449e2fc32a93693f3, type: 2}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 3
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 'Entonces medio pueblo se va a morir. '
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 1
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: 
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Esta ma\xF1ana, el olor a rosas era de lo \xFAnico que se hablaba. "
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 3
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+  - nameOfLine: FIN!!!
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 1
