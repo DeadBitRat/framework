@@ -2585,7 +2585,6 @@ GameObject:
   - component: {fileID: 8179477824371645787}
   - component: {fileID: 8148900297353758745}
   - component: {fileID: 9080812925148188123}
-  - component: {fileID: 9080812925148188124}
   m_Layer: 0
   m_Name: AI NPC
   m_TagString: SimpleNPC
@@ -3486,58 +3485,6 @@ MonoBehaviour:
     attitude: Relaxed
     desires: 'Get meet girls and relax. '
     viewOfLife: 'You may day anyday. '
---- !u!114 &9080812925148188124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241358157676229222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab0b22106e0ff114d9f7d7c2bf23b2f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  functionDetector: {fileID: 0}
-  inputDetector: {fileID: 0}
-  states: {fileID: 0}
-  dialogueSystem: {fileID: 0}
-  dialogueActorManager: {fileID: 8148900297353758745}
-  nPCDialogueManager: {fileID: 0}
-  signDetected: {fileID: 0}
-  readingSign: 0
-  readingDescription: 0
-  envolvedInDialogue: 0
-  bubbleText: {fileID: 0}
-  typedLine: 
-  timePerWords: 0
-  timePerLetter: 0
-  timeToRead: 0
-  timeForAutoChange: 0
-  dialogueRestTime: 0
-  timeUntilCanTalk: 0
-  actorsInScene: []
-  dialogueLines: []
-  currentLine:
-    nameOfLine: 
-    indexActorTalking: 0
-    actorsListening: []
-    preTalkingAnimation: {fileID: 0}
-    dialogueLine: 
-    actorTalkingClip: {fileID: 0}
-    postTalkingAnimation: {fileID: 0}
-    secondsToNextLine: 0
-    isQuestion: 0
-    options: []
-    nextLineDiffers: 0
-    nextLine: 0
-    isEndOfDialogue: 0
-    dialogueEventsName: 
-  currentActor: {fileID: 0}
-  indexLine: 0
-  cutscene: {fileID: 0}
-  voice: {fileID: 0}
-  audioSource: {fileID: 5879105804757851811}
 --- !u!4 &9184219140348878360
 Transform:
   m_ObjectHideFlags: 0
