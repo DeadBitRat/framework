@@ -11,7 +11,7 @@ public class ChatBoxManager : MonoBehaviour
     public TMP_InputField userInputField; // Input field for user input
     public Button submitButton; // Button for submitting input
 
-    private string apiKey = "sk-proj-oli5bi4BJk1NclCQOKAyT3BlbkFJr0dog3vbSq09tJarLaYq"; // Your ChatGPT API key
+    private string apiKey = " Api key va aqui"; // Your ChatGPT API key
     private string apiUrl = "https://api.openai.com/v1/chat/completions"; // Correct API endpoint for ChatGPT
 
     private void Start()
