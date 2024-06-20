@@ -58,7 +58,7 @@ public class FunctionDetector : MonoBehaviour
             nPCActorManager = collision.GetComponent<DialogueActorManager>();
             simpleNPCDialogueManager = collision.GetComponent<SimpleNPCDialogueManager>();
 
-            simpleNPCDialogueManager.playerDialogueManager = dialoguePlayerManager; 
+            simpleNPCDialogueManager.dialoguePlayerManager = dialoguePlayerManager; 
         }
         #endregion
 
@@ -118,7 +118,7 @@ public class FunctionDetector : MonoBehaviour
 
         if (collision.CompareTag("SimpleNPC"))
         {
-            simpleNPCDialogueManager.playerDialogueManager = null;
+            simpleNPCDialogueManager.dialoguePlayerManager = null;
             simpleNPCDialogueManager = null;
             
         }

@@ -6,18 +6,23 @@ using System;
 
 public class SimpleNPCDialogueManager : MonoBehaviour
 {
+    [Header("Dialogue Components")]
     
-    public DialoguePlayerManager playerDialogueManager;
+    public DialoguePlayerManager dialoguePlayerManager;
     
-    public DialogueActorManager playerActorManager; 
+    public DialogueActorManager playerActorManager;
 
+
+    [Header("State")]
     public bool isTalking; 
 
     public TextMeshPro npcBubble;
-    
-    
-    public SimpleNPCDialogue npcDialogue;
 
+    [Header("Simple NPC Dialogue")]
+    public SimpleNPCDialogue simpleNPCDialogue;
+
+
+    [Header("Dialogue Modes")]
     public bool talkOnProximity;
     public SimpleNPCDialogue proximityDialogue;
 
@@ -120,14 +125,16 @@ public class SimpleNPCDialogueManager : MonoBehaviour
     #region Bubble Talking
     public IEnumerator BubbleTalking(string text)  // text es la linea de diálogo actual leída por el lector. 
     {
+        
         int amountOfWords = CountWords(text); // Calculamos la cantidad de palabras
         float timeTalking = amountOfWords * timePerWords; // Calculamos la cantidad de tiempo que el personaje estará hablando
         // El texto de la burbuja de diálogo es el mismo que estará tipeado. 
+        
         StartCoroutine(TypeSentence(text)); //Se comienza a tipear 
         // Debemos esperar a que se termine de tipear la palabra + un tiempo para lectura en función de la cantidad de palabras. 
         yield return new WaitForSeconds(timeToType + timePerWords);
         
-        StartCoroutine(playerDialogueManager.AutoNextLine());
+        StartCoroutine(AutoNextLine());
 
     }
 
@@ -159,6 +166,10 @@ public class SimpleNPCDialogueManager : MonoBehaviour
         Debug.Log("Escribiendo la oración");
         npcBubble.text = ""; 
         timeToType = sentence.Length * timePerLetter;
+
+        playerActorManager.isTalking = true;
+        playerActorManager.animator.Play(playerActorManager.talkingAnimation.name); 
+
         foreach (char letter in sentence.ToCharArray())
         {
             typedLine += letter;
@@ -172,6 +183,8 @@ public class SimpleNPCDialogueManager : MonoBehaviour
             
         }
 
+
+        playerActorManager.isTalking = false;
         isTalking = false;
     }
 
@@ -187,7 +200,7 @@ public class SimpleNPCDialogueManager : MonoBehaviour
         if (playerActorManager.envolvedInDialogue && !isTalking)
         {
             Debug.Log("Pasando de línea ");
-            playerDialogueManager.DisplayNextSignLine();
+            dialoguePlayerManager.DisplayNextSignLine();
         }
     }
 

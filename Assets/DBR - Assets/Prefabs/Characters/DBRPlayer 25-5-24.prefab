@@ -139,11 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 637204b0b8b41bd498ef56d1f323eab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actorID:
-    actorID: 0
-    actorName: 
-    actorType: 
-    bubble: {fileID: 0}
   characterName: Player
   bday:
     month: January
@@ -225,6 +220,8 @@ MonoBehaviour:
   wasFireReleased: 0
   currentFireAxisValue: 0
   wasFirePressedLastFrame: 0
+  functionPressed: 0
+  doubleClickToFunctionActive: 0
 --- !u!114 &5008204235538343192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9fe1bf9e9f707442b2d74ed7c4446fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplay: Platformer
+  gameplay: 0
   characterActivated: 1
   playerBase: {fileID: 7335773878875849403}
   character: {fileID: 8536734382945725599}
@@ -255,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundDetector: {fileID: 8648126731428730852}
-  dialogue: {fileID: 2045144067238909771}
+  dialogue: {fileID: 7089487945274477962}
   currentAction: 
   isIdle: 0
   isActionIdle: 0
@@ -293,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameplaySystem: {fileID: 5008204235538343192}
   character: {fileID: 8536734382945725599}
+  pathfinder: {fileID: 0}
   playerBase: {fileID: 7335773878875849403}
   rb2DBase: {fileID: 0}
   onGround: 0
@@ -308,6 +306,8 @@ MonoBehaviour:
   movingCounter: 0
   negativeDirectionCounter: 0
   positiveDirectionCounter: 0
+  movingByInput: 0
+  movingByClick: 0
   baseShadow: {fileID: 4418723757547063285}
   hVector: 0
   vVector: 0
@@ -316,6 +316,7 @@ MonoBehaviour:
   movementSpeedVector: {x: 0, y: 0}
   timeToTopSpeed: 0
   speedFactor: 1
+  canRun: 0
   alwaysRunning: 0
   walkingLateness: 0
   hSpeedModifier: 0
@@ -402,6 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac1586aaf67693459a47a042745a22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootingEnabled: 0
   isShooting: 0
   canShoot: 1
   shootingPoint: {fileID: 2413397953954808277}
@@ -524,10 +526,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcf27f3210e6ff4e89171f928d86470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoguePlayer: {fileID: 2045144067238909771}
+  dialoguePlayerManager: {fileID: 0}
   machineController: {fileID: 0}
   sign: {fileID: 0}
-  simpleNPC: {fileID: 0}
+  descriptor: {fileID: 0}
+  nPCActorManager: {fileID: 0}
+  simpleNPCDialogueManager: {fileID: 0}
+  actorNPCDialogueManager: {fileID: 0}
+  doorController: {fileID: 0}
+  doorKeyController: {fileID: 0}
 --- !u!1 &4376972714850406879
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +546,7 @@ GameObject:
   - component: {fileID: 1134487280847270205}
   - component: {fileID: 2045144067238909771}
   - component: {fileID: 8183519853850485924}
+  - component: {fileID: 7089487945274477962}
   m_Layer: 10
   m_Name: Dialogue
   m_TagString: Dialogue
@@ -577,24 +585,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   functionDetector: {fileID: 260959014741871418}
   inputDetector: {fileID: 4720921963312494770}
-  actorID:
-    actorID: 0
-    actorName: 
-    actorType: 
-    bubble: {fileID: 0}
   states: {fileID: 6095505741395326245}
-  bubblePosition: {fileID: 2826689841167864680}
+  dialogueSystem: {fileID: 0}
+  dialogueActorManager: {fileID: 7089487945274477962}
+  nPCDialogueManager: {fileID: 0}
   signDetected: {fileID: 1157847527028740402}
   readingSign: 0
-  talkingToNPC: 0
+  readingDescription: 0
+  envolvedInDialogue: 0
   bubbleText: {fileID: 471140310453715910}
   typedLine: 
-  isTalking: 0
   timePerWords: 0.6
   timePerLetter: 0.05
   timeToRead: 0
   timeForAutoChange: 1
+  dialogueRestTime: 0
+  timeUntilCanTalk: 0
+  actorsInScene: []
+  dialogueLines: []
+  currentLine:
+    nameOfLine: 
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: 
+    actorTalkingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    options: []
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  currentActor: {fileID: 0}
+  indexLine: 0
+  cutscene: {fileID: 0}
   voice: {fileID: 8300000, guid: f12094021edb23c48a65e9d301133190, type: 3}
+  audioSource: {fileID: 8183519853850485924}
 --- !u!82 &8183519853850485924
 AudioSource:
   m_ObjectHideFlags: 0
@@ -691,6 +719,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7089487945274477962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376972714850406879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e3206e2a1985345b1093d857f93e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleText: {fileID: 471140310453715910}
+  animator: {fileID: 4454009894742057143}
+  dialogueSystem: {fileID: 0}
+  inputDetector: {fileID: 4720921963312494770}
+  actorID: 0
+  actorName: 
+  actorType: 
+  talkingAnimation: {fileID: 7400000, guid: ea7b388eb0e52274dac14590958c4abd, type: 2}
+  listeningAnimation: {fileID: 7400000, guid: 37fffcbcc4b67094284bb2506d1ee2b7, type: 2}
+  voice: {fileID: 8300000, guid: f12094021edb23c48a65e9d301133190, type: 3}
+  audioSource: {fileID: 8183519853850485924}
+  timePerLetter: 0.05
+  timePerWords: 0.6
+  timeToType: 0
+  typedLine: 
+  timeForAutoChange: 1
+  isIdle: 0
+  isActing: 0
+  isTalking: 0
+  isListening: 0
+  envolvedInDialogue: 0
+  readingSign: 0
+  readingDescription: 0
 --- !u!1 &4418723757547063285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameplaySystem: {fileID: 5008204235538343192}
   hm: {fileID: 7656618932076763247}
+  capsuleCollider: {fileID: 0}
 --- !u!114 &4884475858404068732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,7 +1548,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4454009894742057143}
+  runTimeAnimatorController: {fileID: 0}
   states: {fileID: 6095505741395326245}
+  stateAvailables: []
   inputDetector: {fileID: 4720921963312494770}
   tf: {fileID: 7012311477082831449}
   animationPaused: 0
@@ -1493,6 +1559,9 @@ MonoBehaviour:
   spritesForArmMask: {fileID: 0}
   spritesForTalkingHead: {fileID: 0}
   spriteMask: {fileID: 2066418542590712477}
+  idleAnimation: {fileID: 0}
+  walkingAnimation: {fileID: 0}
+  talkingAnimation: {fileID: 0}
 --- !u!331 &2066418542590712477
 SpriteMask:
   m_ObjectHideFlags: 0

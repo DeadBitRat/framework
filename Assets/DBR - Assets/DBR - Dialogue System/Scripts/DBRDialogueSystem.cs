@@ -36,7 +36,7 @@ public class DBRDialogueSystem : MonoBehaviour
         CheckForDuplicateActorNames();
     }
 
-
+    #region Verificador de Actores Duplicados
 
     // This function will search through the scene for matching DialogueActorManager components
     public void FindAndAddActors()
@@ -111,6 +111,10 @@ public class DBRDialogueSystem : MonoBehaviour
             }
         }
     }
+
+    #endregion
+
+    #region Display Next Acting Dialogue Line
 
     public void DisplayNextActingDialogueLine()
     {
@@ -228,9 +232,9 @@ public class DBRDialogueSystem : MonoBehaviour
 
     }
 
+    #endregion
 
-
-
+    #region Set Current Dialogue Line
     public void SetCurrentDialogueLine(int indexLine)
     {
         if (indexLine >= 0 && indexLine < dialogueLines.Count())
@@ -245,10 +249,15 @@ public class DBRDialogueSystem : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Handle Out Out of Range Index
     private void HandleOutOfRangeIndex()
     {
         EndDialogue();
     }
+
+    #endregion
 
     #region Ending Dialogue
 
@@ -269,6 +278,8 @@ public class DBRDialogueSystem : MonoBehaviour
     }
     #endregion
 
+    #region Actors Listening Class
+
     [Serializable]
     public class ActiveActorListening
     {
@@ -276,6 +287,10 @@ public class DBRDialogueSystem : MonoBehaviour
         public DialogueActorManager actorManager;
         public AnimationClip listeningClip;
     }
+
+    #endregion
+
+
 
     DBRDialogueEventsAssigner FindObjectWithEventName(string eventName)
     {

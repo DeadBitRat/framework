@@ -221,7 +221,7 @@ public class DialoguePlayerManager : MonoBehaviour
 
 
                 //ReadSign(functionDetector.sign.signDialogue);
-                TalkToSimpleNPC(functionDetector.simpleNPCDialogueManager.npcDialogue);
+                TalkToSimpleNPC(functionDetector.simpleNPCDialogueManager.simpleNPCDialogue);
 
                 // Add your own logic here
             }
@@ -764,5 +764,26 @@ public class DialoguePlayerManager : MonoBehaviour
     }
 
     #endregion
+
+
+    public void TalkToNPC(string aiResponse)
+    {
+        // Create a new SimpleDialogueLine with the AI response
+        SimpleDialogueLine newLine = new SimpleDialogueLine
+        {
+            dialogueLine = aiResponse,
+            lineByPlayer = false
+        };
+
+        // Enqueue the AI response as a dialogue sentence
+        dialogueSentences.Enqueue(newLine);
+
+        // Display the next dialogue line (assuming it's set up to handle NPC dialogues)
+        DisplayNextSimpleDialogueLine();
+    }
+
+
+
+
 }
 
