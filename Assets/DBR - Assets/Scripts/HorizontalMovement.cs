@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,11 +12,18 @@ public class HorizontalMovement : MonoBehaviour
 
     public GameplaySystem gameplaySystem;
 
+
     [Header("Player's Component")]
 
-    private InputDetector inputDetector;
     public GameObject character;
+    private CharacterStates states;
+    private InputDetector inputDetector;
+    private CharacterAtributes characterAtributes;
+
+
+    [SerializeField]
     private Jump jump;
+
     [SerializeField]
     public Pathfinding2 pathfinder;
 
@@ -25,14 +33,23 @@ public class HorizontalMovement : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb2DBase;
 
+    [Header("Horizontal Movement Settings")]
 
-    [Header("Character Atributes")]
+    [Tooltip("Horizontal Speed Multiplier Factor")]
+    public float walkingSpeed;
+    public float runningSpeed;
+    public bool canRun;
+    public bool alwaysRunning;
 
-    private CharacterAtributes characterAtributes;
+    public float timeToTopSpeed;
+
+
+    public float hSpeedFactor = 1f;
+
 
     [Header("Horizontal Movement States")]
 
-    private CharacterStates states;
+    
     public bool onGround;
     public string orientation;
 
@@ -42,6 +59,8 @@ public class HorizontalMovement : MonoBehaviour
     public bool isRunning;
     public bool changingSpeedSoft;
     public bool changingSpeedHard;
+
+    public bool autoWalk; 
 
     public bool changingDirections;
     public bool changingDirectionHard;
@@ -58,23 +77,16 @@ public class HorizontalMovement : MonoBehaviour
     public GameObject baseShadow;
 
 
-    [Tooltip("Horizontal Vector, Goes gradually from 0 to 1 or from 0 to -1")]
+    [Header("Indicators")]
     public float hVector;
     public float vVector;
 
-    [Tooltip("Horizontal Speed Multiplier Factor")]
-    public float walkingSpeed;
-    public float runningSpeed;
+    
 
     public Vector2 movementSpeedVector;
 
-    public float timeToTopSpeed;
 
 
-    public float speedFactor;
-
-    public bool canRun;
-    public bool alwaysRunning;
 
 
     [Tooltip("Time in seconds that it actually takes to start walking after pressing Horizontal Input")]
@@ -97,6 +109,18 @@ public class HorizontalMovement : MonoBehaviour
 
 
         orientation = "Right";
+
+        if (gameplaySystem.gameplay == GameplaySystem.GameplayType.Platformer)
+        {
+           
+        }
+
+        else if (gameplaySystem.gameplay == GameplaySystem.GameplayType.TopDown)
+        {
+           
+        }
+
+
     }
 
     public void Update()
@@ -104,19 +128,22 @@ public class HorizontalMovement : MonoBehaviour
         hVector = inputDetector.hVector;
         vVector = inputDetector.vVector;
 
-        
+
 
         #region RigidBody2D Controller
-        if (gameplaySystem.gameplay == GameplaySystem.GameplayType.Platformer)
-        {
-            Debug.Log("EStamos en modo platformer! "); 
-            rb2DBase.velocity = new Vector2(movementSpeedVector.x + hSpeedModifier, rb2DBase.velocity.y);
-        }
+        
+       if (gameplaySystem.gameplay == GameplaySystem.GameplayType.Platformer)
+       {
+           
+           rb2DBase.velocity = new Vector2(movementSpeedVector.x * hSpeedFactor + hSpeedModifier, rb2DBase.velocity.y);
+       }
 
-        if (gameplaySystem.gameplay == GameplaySystem.GameplayType.TopDown)
-        {
-            rb2DBase.velocity = movementSpeedVector;
-        }
+       if (gameplaySystem.gameplay == GameplaySystem.GameplayType.TopDown)
+       {
+           rb2DBase.velocity = movementSpeedVector;
+           rb2DBase.velocity = new Vector2(movementSpeedVector.x * hSpeedFactor, movementSpeedVector.y); 
+       }
+       
 
         #endregion
 
@@ -437,7 +464,7 @@ public class HorizontalMovement : MonoBehaviour
         {
             Accelerating(speed);
 
-            movementSpeedVector = new Vector2(hVector * speed * speedFactor, rb2DBase.velocity.y);
+            movementSpeedVector = new Vector2(hVector * speed * hSpeedFactor, rb2DBase.velocity.y);
         }
 
         else
@@ -457,7 +484,7 @@ public class HorizontalMovement : MonoBehaviour
             Accelerating(speed);
             Vector2 combinedVector = new Vector2(hVector, 0f) + new Vector2(0f, vVector);
 
-            movementSpeedVector = combinedVector.normalized * speed * speedFactor;
+            movementSpeedVector = combinedVector.normalized * speed * hSpeedFactor;
 
             //movementSpeedVector = new Vector2(hVector * speed * speedFactor, rb2DBase.velocity.y);
         }
@@ -476,19 +503,19 @@ public class HorizontalMovement : MonoBehaviour
     {
 
 
-        if (speedFactor < 1f && (positiveDirectionCounter >= 0.1f || negativeDirectionCounter >= 0.1f) && timeToTopSpeed != 0f)
+        if (hSpeedFactor < 1f && (positiveDirectionCounter >= 0.1f || negativeDirectionCounter >= 0.1f) && timeToTopSpeed != 0f)
         {
-            speedFactor = movingCounter / timeToTopSpeed;
+            hSpeedFactor = movingCounter / timeToTopSpeed;
         }
 
-        else if (speedFactor < 1f && (positiveDirectionCounter < 0.1f || negativeDirectionCounter < 0.1f) && timeToTopSpeed != 0f)
+        else if (hSpeedFactor < 1f && (positiveDirectionCounter < 0.1f || negativeDirectionCounter < 0.1f) && timeToTopSpeed != 0f)
         {
-            speedFactor = 0.1f;
+            hSpeedFactor = 0.1f;
         }
 
         else if ((positiveDirectionCounter > timeToTopSpeed || negativeDirectionCounter > timeToTopSpeed))
         {
-            speedFactor = 1f;
+            hSpeedFactor = 1f;
         }
 
     }
@@ -512,5 +539,44 @@ public class HorizontalMovement : MonoBehaviour
 
     #endregion //Platformer Methods
 
+    public IEnumerator AutoPositioning(Vector2 targetPosition, float speed)
+    {
+        autoWalk = true; 
+        // Calculate the distance to the target
+        float distance = Vector2.Distance(transform.position, targetPosition);
+
+        // While the character is not at the target position
+        while (distance > 0.1f) // You can adjust the threshold as needed
+        {
+            // Calculate the direction towards the target
+            Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+
+            // Calculate the new position
+            Vector2 newPosition = (Vector2)transform.position + direction * speed * Time.deltaTime;
+
+            // Move the character
+            rb2DBase.MovePosition(newPosition);
+
+            // Update the distance
+            distance = Vector2.Distance(transform.position, targetPosition);
+
+            // Wait for the next frame
+            yield return null;
+        }
+
+        // Ensure the character is exactly at the target position
+        rb2DBase.MovePosition(targetPosition);
+
+        autoWalk = false;
+
+       
+
+    }
+
+    public void TestWalk(Transform goal)
+    {
+        Vector2 targetPosition = goal.position;
+        StartCoroutine(AutoPositioning(targetPosition, walkingSpeed));  
+    }
 }
 

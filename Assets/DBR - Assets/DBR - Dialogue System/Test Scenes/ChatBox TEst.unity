@@ -463,11 +463,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6407870904048358717, guid: 6b4f27ef929cd1048abf5ad65bb90904, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6407870904048358717, guid: 6b4f27ef929cd1048abf5ad65bb90904, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.35
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6407870904048358717, guid: 6b4f27ef929cd1048abf5ad65bb90904, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 18.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1534,12 +1534,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2009691748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b46ac02bb7130cb4baf82a42cfc82bbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 336781990a973574495949c145e1299e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   aiResponseText: {fileID: 70917484}
   userInputField: {fileID: 1540015440}
   submitButton: {fileID: 167618557}
+  aiCharacter: {fileID: 11400000, guid: 3332a73e65df4fb43b45e53911d8779b, type: 2}
+  maxWords: 50
+  maxSentences: 4
 --- !u!1 &2091232447
 GameObject:
   m_ObjectHideFlags: 0

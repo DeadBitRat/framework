@@ -1,4 +1,5 @@
 
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -177,11 +178,12 @@ public class AnimationController : MonoBehaviour
 
         animator.SetBool("Talking", states.isTalking); 
 
-        if (states.isTalking)
+        
+        if (states.isTalking && !states.isActing)
         {
             animator.Play(talkingAnimation.name); 
         }
-
+        
         
 
 

@@ -1,14 +1,17 @@
-using ExitGames.Client.Photon;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+
 
 public class DBRDialogueSystem : MonoBehaviour
 {
-   
+    public InputDetector inputDetector;
+    public DialoguePlayerManager dialoguePlayerManager;
 
     public List<string> actorsInScene;
     public List<DialogueActorManager> matchedActorsList;
@@ -19,21 +22,32 @@ public class DBRDialogueSystem : MonoBehaviour
     public List<ActiveActorListening> activeActorsListening;
 
     public DialogueLine[] dialogueLines;
+    public DBRDialogue dialogue;
 
-    public InputDetector inputDetector;
 
     public DialogueLine currentLine;
     public DialogueActorManager currentActor;
 
     public DBRDialogueEventsAssigner currentEvents;
-    public bool hayEventos; 
+    public bool hayEventos;
+    public int chosenOption; 
 
     public int indexLine = 0;
+
+    public UnityEvent eventoPrueba; 
+
+
+
 
     void Start()
     {
         // Check for duplicate actor names in the scene
         CheckForDuplicateActorNames();
+
+        inputDetector = FindObjectOfType<InputDetector>();
+        dialoguePlayerManager = FindObjectOfType<DialoguePlayerManager>();
+
+        
     }
 
     #region Verificador de Actores Duplicados
@@ -116,61 +130,86 @@ public class DBRDialogueSystem : MonoBehaviour
 
     #region Display Next Acting Dialogue Line
 
-    public void DisplayNextActingDialogueLine()
-    {
-        inputDetector.inputActivated = false;
 
-        // Los tres siguientes son para limpiar los textos tanto del lector como del letrero. 
+
+    public IEnumerator DisplayNextActingDialogueLine()
+    {
+        Debug.Log("Displaying Next Acting Dialogue Line from the Dialogue System!"); 
+        // Clear the texts of both the reader and the signboard.
         foreach (DialogueActorManager actor in matchedActorsList)
         {
+            Debug.Log("Limpiando las burbujas de " + actor); 
             actor.bubbleText.text = "";
             actor.typedLine = "";
         }
 
-        actorsListening.Clear();
-        activeActorsListening.Clear(); 
 
+        Debug.Log("Asignando el index actual con el index: " + indexLine); 
         SetCurrentDialogueLine(indexLine);
+
+        
 
         if (currentLine.isEndOfDialogue)
         {
-            Debug.Log("Finalizando el diálogo");
+            Debug.Log("La línea es fin del diálogo!"); 
             EndDialogue();
-            return;
+            yield break;
         }
-        Debug.Log("Línea de Guión #" + indexLine);
 
-        if (matchedActorsList.Count() != 0)
-        { 
         currentActor = matchedActorsList[currentLine.indexActorTalking];
+        currentLine = dialogueLines[indexLine]; 
+        //dialogueSystem.currentActor = actorsInScene[currentLine.indexActorTalking];
+
+        Debug.Log("Designando al actor que habla durante esta línea: " +  currentActor);
+
+        #region Actor reading line
+
+        // Identify who is the actor talking this line.
+        int i = currentLine.indexActorTalking;
+
+        Debug.Log("La línea actual es: " + i); 
+
+        actorTalking = matchedActorsList[i];
+
+        Debug.Log("Designando al actor que habla durante esta línea: " + actorTalking);
+
+
+        //line.actorTalking.dialogueActorManager.isTalking = true;
+
+        //yield return
+
+        #region Eventos Pre-Dialogo
+        Debug.Log("Hay Eventos pre-dialogos?");
+        if (hayEventos)
+        {
+            Debug.Log("Hay eventos pre-diálogo!"); 
+            currentEvents.events.preDialogueEvents?.Invoke();
         }
 
+        #endregion
+
+        Debug.Log("La linea es: " + currentLine.dialogueLine); 
+        StartCoroutine(actorTalking.BubbleTalking(currentLine.dialogueLine));
+
+        #region Case: There is a question in the line
+
+        if (currentLine.isQuestion)
+        {
+            yield return new WaitUntil(() => currentActor.questionAnswered);
+        }
+
+        #endregion
+
+        if (currentLine.nextLineDiffers)
+        {
+            indexLine = currentLine.nextLine;
+        }
         else
-
         {
-            Debug.LogWarning("No tenemos lista de actores"); 
-        }
-
-        actorsListening.Clear();
-
-        // Getting the Events
-
-        // First we clean the variable... just in case. 
-        currentEvents = null;
-
-        if (currentLine.dialogueEventsName != "")
-        {
-            currentEvents = FindObjectWithEventName(currentLine.dialogueEventsName);
-            hayEventos = true; 
-        }
-
-        else
-        {
-            hayEventos = false;
+            indexLine = indexLine + 1;
         }
 
 
-        
 
 
 
@@ -179,7 +218,7 @@ public class DBRDialogueSystem : MonoBehaviour
         {
             foreach (DialogueActorManager activeActor in matchedActorsList)
             {
-               if (actorListening.actorName == activeActor.actorName)
+                if (actorListening.actorName == activeActor.actorName)
                 {
                     // Instantiate the ActiveActorListening object
                     ActiveActorListening activeActorListening = new ActiveActorListening();
@@ -191,35 +230,18 @@ public class DBRDialogueSystem : MonoBehaviour
                 }
             }
         }
+
+
         foreach (ActiveActorListening actorListening in activeActorsListening)
         {
             if (actorListening.listeningClip != null)
             {
                 actorListening.actorManager.animator.Play(actorListening.listeningClip.name);
+                Debug.Log("Animando a los actores escuchando");
             }
 
         }
 
-        #region Eventos Pre-Dialogo
-
-        if (hayEventos)
-        {
-            currentEvents.events.preDialogueEvents?.Invoke();
-        }
-
-        #endregion
-
-
-        #region Actor reading line
-
-        // Identify who is the actor talking this line. 
-        int i = currentLine.indexActorTalking;
-        actorTalking = matchedActorsList[i];
-
-
-        //line.actorTalking.dialogueActorManager.isTalking = true;
-
-        StartCoroutine(actorTalking.BubbleTalking(currentLine.dialogueLine));
 
 
 
@@ -227,20 +249,30 @@ public class DBRDialogueSystem : MonoBehaviour
 
 
         #endregion
-
-
-
     }
 
+
     #endregion
+
+
+
+
+
+
+
+
+
+
+
 
     #region Set Current Dialogue Line
     public void SetCurrentDialogueLine(int indexLine)
     {
         if (indexLine >= 0 && indexLine < dialogueLines.Count())
         {
+            Debug.Log("Comenzando la revisión");
             currentLine = dialogueLines[indexLine];
-
+            Debug.Log("Setting the current line which is: " + currentLine.dialogueLine); 
 
         }
         else
@@ -263,15 +295,26 @@ public class DBRDialogueSystem : MonoBehaviour
 
     public void EndDialogue()
     {
-       
+
         foreach (DialogueActorManager actor in matchedActorsList)
         {
-            inputDetector.inputActivated = true; 
+            
+            inputDetector.inputActivated = true;
 
             actor.bubbleText.text = "";
             actor.typedLine = "";
+            actor.questionAnswered = false; 
         }
+        matchedActorsList.Clear();
+        indexLine = 0;
+        dialogue = null;
+        actorTalking = null; 
 
+        if (dialoguePlayerManager != null)
+        {
+            
+        }
+         
         inputDetector.inputActivated = true;
 
         Debug.Log("End of dialogue");
@@ -309,4 +352,79 @@ public class DBRDialogueSystem : MonoBehaviour
         // Return null if no matching object is found
         return null;
     }
+
+
+    public void AssignOptionsToQuestions()
+    {
+        
+
+    }
+
+
+    public void AnswerQuestion()
+    {
+        currentActor.questionAnswered = true;
+    }
+
+    public int DebugNumberTest(int optionNumber)
+    {
+        return optionNumber; 
+    }
+
+    public void DebugTestAction (int number)
+    {
+        Debug.Log("You have chosen the option Number: " + number + "Yaaayy!!!"); 
+    }
+
+
+
+    
+
+
+    public void DebugPrueba()
+    {
+        Debug.Log("probando esta mierda!!!"); 
+    }
+
+    public void InvokeOption1Events()
+
+    {
+         
+        Debug.Log("Invocando al evento prueba de la opción 1 ");
+        
+        
+
+    }
+
+    public void InvokeOption2Events()
+
+    {
+        
+
+    }
+
+    public void InvokeOption3Events()
+
+    {
+
+
+    }
+
+    public void InvokeOption4Events()
+
+    {
+
+
+    }
+
+    public void InvokeOption5Events()
+
+    {
+
+    }
+
+
 }
+
+
+

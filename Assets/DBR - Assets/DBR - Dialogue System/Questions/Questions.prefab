@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3168206322825913634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5741133391421373045}
+  - component: {fileID: 5042504927433783403}
+  - component: {fileID: 5371723003613570282}
+  m_Layer: 0
+  m_Name: Questions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5741133391421373045
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3168206322825913634}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5042504927433783403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3168206322825913634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df871ba54e1414e4a9906a61d4cecb41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: "Escoge una opci\xF3n."
+  option1:
+    optionText: "Esta es la opci\xF3n 1"
+    optionEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5371723003613570282}
+          m_TargetAssemblyTypeName: StoryEvents, Assembly-CSharp
+          m_MethodName: DebugLog
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Has escogido la opci\xF3n 1"
+            m_BoolArgument: 0
+          m_CallState: 2
+  option2:
+    optionText: "Y esta es la opci\xF3n 2"
+    optionEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5371723003613570282}
+          m_TargetAssemblyTypeName: StoryEvents, Assembly-CSharp
+          m_MethodName: DebugLog
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Has escogido la opci\xF3n 2"
+            m_BoolArgument: 0
+          m_CallState: 2
+  option3:
+    optionText: "Tambi\xE9n puedes escoger la opci\xF3n 3"
+    optionEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5371723003613570282}
+          m_TargetAssemblyTypeName: StoryEvents, Assembly-CSharp
+          m_MethodName: DebugLog
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Has escogido la opci\xF3n 3. "
+            m_BoolArgument: 0
+          m_CallState: 2
+  option4:
+    optionText: ... o la 4
+    optionEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5371723003613570282}
+          m_TargetAssemblyTypeName: StoryEvents, Assembly-CSharp
+          m_MethodName: DebugLog
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Has escogido la opci\xF3n 4. "
+            m_BoolArgument: 0
+          m_CallState: 2
+  option5:
+    optionText: "Pero todos saben que quiz\xE1s tal ves pueda que quieras la 5. "
+    optionEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5371723003613570282}
+          m_TargetAssemblyTypeName: StoryEvents, Assembly-CSharp
+          m_MethodName: DebugLog
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Has escogido la opci\xF3n 5"
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &5371723003613570282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3168206322825913634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858167023f6ce934387fb42792ea5980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueAssignments: []
+  animationAssignments: []

@@ -27,7 +27,14 @@ public class FunctionDetector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (dialoguePlayerManager == null)
+        {
+            Debug.LogError("Dialogue Player Manager NOT ASSIGNED. Solution: Drag the Dialogue Player Manager to the Function Detector Slot."); 
+        }
+        if (machineController == null)
+        {
+            Debug.LogError("Machine Controller NOT ASSIGNED. Solution: Drag the Machine Controller to the Function Detector Slot.");
+        }
     }
 
     // Update is called once per frame
@@ -107,29 +114,36 @@ public class FunctionDetector : MonoBehaviour
     {
         if (collision.CompareTag("Sign"))
         {
-            sign = null; 
+            sign.StopReading(); 
+            sign = null;
+            dialoguePlayerManager.EndDialogue(); 
         }
 
         if (collision.CompareTag("Descriptor"))
         {
-            descriptor = null; 
+            descriptor = null;
+            dialoguePlayerManager.EndDialogue();
         }
 
 
         if (collision.CompareTag("SimpleNPC"))
         {
+            nPCActorManager.StopTalking();
             simpleNPCDialogueManager.dialoguePlayerManager = null;
             simpleNPCDialogueManager = null;
-            
+            dialoguePlayerManager.EndDialogue();
+
         }
 
         if (collision.CompareTag("ActorNPC"))
         {
+            nPCActorManager.StopTalking();
             actorNPCDialogueManager.playerDialogueManager = null;
             nPCActorManager = null;
             actorNPCDialogueManager = null;
+            dialoguePlayerManager.EndDialogue();
 
-            
+
 
         }
 

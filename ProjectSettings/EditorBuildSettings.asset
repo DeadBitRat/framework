@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Opening Screen.unity
+    path: Assets/DBR - Assets/Scenes/Opening Screen.unity
     guid: 0953bf09ae960f7468d74a190670769b
   - enabled: 0
-    path: Assets/Scenes/Megaman 2/Intro.unity
+    path: Assets/DBR - Assets/Scenes/Megaman 2/Intro.unity
     guid: edddf7c04a672af48a26dc2a83a78fa9
   - enabled: 0
-    path: Assets/Scenes/MetalGlutton-Stage.unity
+    path: Assets/DBR - Assets/Scenes/MetalGlutton-Stage.unity
     guid: f78d791cf8d3d8a4195a23077a9cb71f
   - enabled: 0
-    path: Assets/Scenes/DBR Scene.unity
+    path: Assets/DBR - Assets/Scenes/DBR Scene.unity
     guid: a59a983c196f51443b93ab287bd70312
   - enabled: 0
-    path: Assets/Scenes/DBR - Dialogue System Test.unity
+    path: Assets/DBR - Assets/Scenes/DBR - Dialogue System Test.unity
     guid: e4af44b873c56a44bb723ea4f6ee63fe
   - enabled: 0
     path: Assets/DBR - Assets/DBR - Mar del Tiempo Perdido/DBR Scenes - Mar del Tiempo

@@ -17,7 +17,7 @@ public class CharacterStates : MonoBehaviour
     private ShootingAttack shootingAttack;
 
     [SerializeField]
-    private DialogueActorManager dialogue; 
+    private DialogueActorManager dialogueActorManager; 
 
 
     // Actions
@@ -38,7 +38,8 @@ public class CharacterStates : MonoBehaviour
 
     public bool isShooting;
 
-    public bool isTalking; 
+    public bool isTalking;
+    public bool isActing; 
 
     // States
 
@@ -97,7 +98,8 @@ public class CharacterStates : MonoBehaviour
 
         // Acting!
 
-        isTalking = dialogue.isTalking; 
+        isTalking = dialogueActorManager.isTalking; 
+        isActing = dialogueActorManager.isActing;
 
         // States: 
 

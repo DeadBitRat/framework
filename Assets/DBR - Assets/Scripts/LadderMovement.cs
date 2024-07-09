@@ -92,6 +92,7 @@ public class LadderMovement : MonoBehaviour
 
     public void ClimbingLadder()
     {
+        
         rb2DBase.velocity = new Vector2(0f, vVector * ladderClimbingSpeed); //old version of horizontal movement
     }
 
@@ -100,6 +101,8 @@ public class LadderMovement : MonoBehaviour
         rb2DBase.gravityScale = 0f;
         states.onLadder = true;
         registeredLadder = detectedLadder;
+
+        horizontalMovement.hSpeedFactor = 0f;
 
         if (registeredLadder != null)
         {
@@ -111,7 +114,7 @@ public class LadderMovement : MonoBehaviour
 
     public void GettingOffLadder()
     {
-        
+        horizontalMovement.hSpeedFactor = 1f;
         rb2DBase.gravityScale = 1f;
         
         Physics2D.IgnoreCollision(baseCollider, registeredLadder.GetComponent<Ladder>().hatch.GetComponent<BoxCollider2D>(), false);

@@ -4,13 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public class DialogueOption
-{
-    public string optionText;
-    public int nextLineIndex; // Index of the next dialogue line if this option is selected
-}
-
-[Serializable]
 public class DialogueLine
 {
     [Header("Basic Information")]
@@ -28,7 +21,7 @@ public class DialogueLine
     public string dialogueLine;
 
     [Tooltip("If blank, then plays the default talking animation")]
-    public AnimationClip actorTalkingClip;
+    public AnimationClip actorTalkingActingClip;
 
     public AnimationClip postTalkingAnimation;
 
@@ -36,9 +29,15 @@ public class DialogueLine
     [Tooltip("The number of seconds to wait before moving to the next line.")]
     public float secondsToNextLine;
 
-    [Header("Dialogue Options")]
+    [Header("Dialogue Questions")]
     public bool isQuestion;
-    public DialogueOption[] options; // Options for questions
+
+    public string questionID;
+
+    
+    public DBRQuestion question;
+
+    //public DialogueOption[] options; // Options for questions
 
     [Header("Dialogue Flow")]
     public bool nextLineDiffers;

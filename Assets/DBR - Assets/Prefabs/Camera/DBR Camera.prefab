@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8182920165882919348}
   - component: {fileID: 193368094385173204}
   - component: {fileID: 7867277898789446360}
-  - component: {fileID: 2644548529336675173}
+  - component: {fileID: 1738378709066291611}
   m_Layer: 0
   m_Name: DBR Camera
   m_TagString: MainCamera
@@ -116,7 +116,7 @@ MonoBehaviour:
   reflex: {fileID: 2800000, guid: 1fc9ba9fb0c2dbf42b42d010983ac96d, type: 3}
   reflexMagnetude: 0.482
   radialDistortion: 0.04
---- !u!114 &2644548529336675173
+--- !u!114 &1738378709066291611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,15 +125,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7085058663423277027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a2400e65a94ab942b4e51f46faf9aed, type: 3}
+  m_Script: {fileID: 11500000, guid: bb3c1c0fd39f9614a960deab4ef3e629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  camera2DPosition: {x: 2.4, y: 1.35}
-  followerCamera: 0
-  lockedCamera: 0
-  hasLimits: 0
-  leftLimit: 0
-  rightLimit: 0
-  upperLimit: 0
-  bottomLimit: 0
+  tileSizeIndex: 0
+  tileSize:
+  - 10x10
+  - 16x16
+  - 32x32
+  - Other
+  locationPoint: {x: 0, y: 0}

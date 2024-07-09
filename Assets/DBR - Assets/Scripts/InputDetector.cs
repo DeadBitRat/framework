@@ -111,7 +111,7 @@ public class InputDetector : MonoBehaviour
 
         #endregion
 
-            #region 1- Platformer
+        #region 1- Platformer
 
         if (gameplaySystem.gameplay == GameplaySystem.GameplayType.Platformer && inputActivated)
         {

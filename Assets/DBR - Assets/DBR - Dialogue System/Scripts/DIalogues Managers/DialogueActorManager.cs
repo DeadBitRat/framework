@@ -45,6 +45,9 @@ public class DialogueActorManager : MonoBehaviour
     public bool readingSign;  // Indicates if the actor is reading a sign.
     public bool readingDescription;  // Indicates if the actor is reading a description.
 
+    public bool bubbleTalking;
+    public bool questionAnswered; 
+
     #endregion
 
     #region Start
@@ -52,6 +55,9 @@ public class DialogueActorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dialogueSystem = FindObjectOfType<DBRDialogueSystem>();
+        inputDetector = FindObjectOfType<InputDetector>(); 
+
         // Get the AudioSource component attached to the actor, if it exists.
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -67,6 +73,10 @@ public class DialogueActorManager : MonoBehaviour
 
         // Set the audio source's clip to the actor's voice.
         audioSource.clip = voice;
+
+
+        //dialogueSystem.currentLine.question.TurnOffDialoguePanels(); 
+
     }
 
     #endregion
@@ -89,11 +99,16 @@ public class DialogueActorManager : MonoBehaviour
     // Coroutine to manage the actor's talking animation and dialogue bubble.
     public IEnumerator BubbleTalking(string text)
     {
+        bubbleTalking = true;
+
+        Debug.Log("Bubble Talking Time!"); 
+
         #region Pre-Talking Animation
 
         // Play pre-talking animation if it exists.
         if (dialogueSystem.currentLine.preTalkingAnimation != null)
         {
+            Debug.Log("Hay Animación previa al diálogo"); 
             isActing = true;
             animator.Play(dialogueSystem.currentLine.preTalkingAnimation.name, 0, 0.0f);
             yield return new WaitForSeconds(dialogueSystem.currentLine.preTalkingAnimation.length);
@@ -104,21 +119,26 @@ public class DialogueActorManager : MonoBehaviour
 
         #region Saying the line
 
-        if (text != "")
+        if (text != "") //"Si la linea tiene texto"
         {
-            isTalking = true;
+            
 
             #region Playing the Talking Animation Default or Specific
 
+            
             // Play the specific or default talking animation.
-            if (dialogueSystem.currentLine.actorTalkingClip != null)
-            {
-                animator.Play(dialogueSystem.currentLine.actorTalkingClip.name);
+            if (dialogueSystem.currentLine.actorTalkingActingClip != null)
+            {   
+                isActing = true; 
+                animator.Play(dialogueSystem.currentLine.actorTalkingActingClip.name);
             }
-            else if (talkingAnimation != null)
+
+            else
             {
-                animator.Play(talkingAnimation.name);
-            }
+                animator.Play(talkingAnimation.name); 
+
+                }
+         
 
             #endregion
 
@@ -129,6 +149,14 @@ public class DialogueActorManager : MonoBehaviour
             // Start typing the sentence.
             StartCoroutine(TypeSentence(text));
             yield return new WaitForSeconds(timeToType + timePerWords);
+
+            if (dialogueSystem.currentLine.actorTalkingActingClip != null)
+            {
+                isActing = false;
+               
+            }
+
+
         }
 
         #endregion
@@ -152,6 +180,22 @@ public class DialogueActorManager : MonoBehaviour
 
         #endregion
 
+        #region Question Time!
+
+        if (dialogueSystem.currentLine.isQuestion)
+        {
+            Debug.Log("Vamos a preguntar algo!");
+            dialogueSystem.currentLine.question.TurnOnDialogueQuestionPanel();
+            dialogueSystem.AssignOptionsToQuestions(); 
+
+            yield return new WaitUntil(() => questionAnswered);
+        }
+        
+
+
+        #endregion
+
+
         #region The post-Dialogue Event!
 
         // Invoke post-dialogue events if they exist.
@@ -162,18 +206,13 @@ public class DialogueActorManager : MonoBehaviour
 
         #endregion
 
-        #region Ending the Bubble Reading 
+        bubbleTalking = false;
 
-        // Check if the next line is the end of the dialogue.
-        if (!dialogueSystem.dialogueLines[dialogueSystem.indexLine + 1].isEndOfDialogue)
-        {
-            dialogueSystem.indexLine++;
-            dialogueSystem.DisplayNextActingDialogueLine();
-        }
-        else
-        {
-            dialogueSystem.EndDialogue();
-        }
+        #region Displaying Next Line
+
+      
+            StartCoroutine(dialogueSystem.DisplayNextActingDialogueLine());
+   
 
         #endregion
     }
@@ -187,6 +226,8 @@ public class DialogueActorManager : MonoBehaviour
     {
         Debug.Log("Typing the sentence");
 
+        isTalking = true;
+        TypeSpeedUp(); 
         // Calculate the time taken to type the sentence.
         timeToType = sentence.Length * timePerLetter;
         foreach (char letter in sentence.ToCharArray())
@@ -238,4 +279,38 @@ public class DialogueActorManager : MonoBehaviour
     }
 
     #endregion
+
+
+    public void StopTalking()
+    {
+        bubbleText.text = "";
+    }
+
+    public void TypeSpeedUp()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            timePerLetter = 0.01f; 
+        }
+
+        else
+        {
+            timePerLetter = 0.05f;
+        }
+    }
+
+    public void InterruptDialogue()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            dialogueSystem.EndDialogue(); 
+            
+        }
+
+    }
+
+   
+
+  
+
 }

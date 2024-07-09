@@ -5,6 +5,8 @@ using TMPro;
 using System;
 
 using System.Linq;
+using UnityEngine.UI;
+
 
 [ExecuteInEditMode]
 public class DialoguePlayerManager : MonoBehaviour
@@ -12,36 +14,77 @@ public class DialoguePlayerManager : MonoBehaviour
     [Header("DBR General System Elements")]
     public FunctionDetector functionDetector;
     public InputDetector inputDetector;
-   
+
     public CharacterStates states;
 
     [Header("DBR Dialogue System Elements")]
     public DBRDialogueSystem dialogueSystem;
     public DialogueActorManager dialogueActorManager;
     [HideInInspector]
-    public ActorNPCDialogueManager nPCDialogueManager; 
+    public ActorNPCDialogueManager nPCDialogueManager;
+
 
     
+    public TMP_Text questionText;
 
+    [Header("Boton 1")]
+    public GameObject option1Button;
+    public DBRButton option1DBRButton; 
+    public Button option1ButtonSC; 
+    public TMP_Text option1Text;
+
+    [Header("Boton 2")]
+    public GameObject option2Button;
+    public DBRButton option2DBRButton;
+    public Button option2ButtonSC;
+    public TMP_Text option2Text;
+
+    [Header("Boton 3")]
+    public GameObject option3Button;
+    public DBRButton option3DBRButton;
+    public Button option3ButtonSC;
+    public TMP_Text option3Text;
+
+    [Header("Boton 4")]
+    public GameObject option4Button;
+    public DBRButton option4DBRButton;
+    public Button option4ButtonSC;
+    public TMP_Text option4Text;
+
+    [Header("Boton 5")]
+    public GameObject option5Button;
+    public DBRButton option5DBRButton;
+    public Button option5ButtonSC;
+    public TMP_Text option5Text;
+
+    [Header("Input Field Elements")]
+
+    public Button submit;
+    public TMP_InputField answerInputField;
+
+
+    [Header("Signs Reading")]
     public GameObject signDetected;
 
     public bool readingSign;
-    public bool readingDescription; 
+    public bool readingDescription;
 
+    [Header("Player Dialogue States")]
     public bool envolvedInDialogue;
 
+    [Header("Player Dialogue Elements")]
     public TextMeshPro bubbleText;
     public string typedLine;
 
-   
 
+    [Header("Player Dialogue Settings")]
     public float timePerWords;
     public float timePerLetter;
     private float timeToType;
     public float timeToRead;
     public float timeForAutoChange;
     public float dialogueRestTime;
-    public float timeUntilCanTalk; 
+    public float timeUntilCanTalk;
 
 
 
@@ -49,20 +92,20 @@ public class DialoguePlayerManager : MonoBehaviour
     public Queue<SignLine> signSentences;
     public Queue<SimpleDialogueLine> dialogueSentences;
     public DialogueLine[] dialogueLines;
-    
+
     public Queue<DescriptorLine> descriptionSentences;
 
 
 
 
     public DialogueLine currentLine;
-    public DialogueActorManager currentActor; 
+    public DialogueActorManager currentActor;
 
-    public int indexLine = 0; 
+    public int indexLine = 0;
 
-    public Cutscene cutscene; 
+    public Cutscene cutscene;
 
-
+    public bool waitingToContinue;
 
 
     public AudioClip voice;
@@ -78,6 +121,9 @@ public class DialoguePlayerManager : MonoBehaviour
         }
 
         dialogueActorManager = GetComponent<DialogueActorManager>();
+        dialogueSystem = FindObjectOfType<DBRDialogueSystem>();
+
+        states = FindAnyObjectByType<CharacterStates>();
 
         signSentences = new Queue<SignLine>();
         dialogueSentences = new Queue<SimpleDialogueLine>();
@@ -86,7 +132,7 @@ public class DialoguePlayerManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = voice;
 
-      
+
 
     }
 
@@ -110,10 +156,11 @@ public class DialoguePlayerManager : MonoBehaviour
 
         #endregion
 
-    
+
 
         #region Bubble Orientation
 
+        
         if (states.orientation == "Left")
         {
             bubbleText.transform.localScale = new Vector3(-1f,1f,1f);
@@ -123,21 +170,21 @@ public class DialoguePlayerManager : MonoBehaviour
         {
             bubbleText.transform.localScale = new Vector3(1f, 1f, 1f);
         }
+        
 
+        #endregion
 
-            #endregion
+        #region Bubble Position
 
-            #region Bubble Position
+        //transform.position = bubblePosition.position;
 
-            //transform.position = bubblePosition.position;
+        #endregion
 
-            #endregion
+        #region Text Bubble in Editor 
 
-            #region Text Bubble in Editor 
-
-            if (Application.isEditor && !Application.isPlaying)
+        if (Application.isEditor && !Application.isPlaying)
         {
-
+            
             if (dialogueActorManager.isTalking)
             {
                 bubbleText.text = "Hola, soy una inocente burbuja de dialogo";
@@ -147,13 +194,13 @@ public class DialoguePlayerManager : MonoBehaviour
             {
                 bubbleText.text = "";
             }
-
+            
         }
 
         #endregion
 
         #region Sign Detected!
-
+        
         if (functionDetector.sign != null && states.isIdle && timeUntilCanTalk <= 0)
         {
             if (inputDetector.functionPressed && !readingSign)
@@ -175,6 +222,8 @@ public class DialoguePlayerManager : MonoBehaviour
             }
         }
 
+
+
         #endregion
 
 
@@ -182,7 +231,7 @@ public class DialoguePlayerManager : MonoBehaviour
 
         if (functionDetector.descriptor != null && states.isIdle && !readingDescription && timeUntilCanTalk <= 0)
         {
-            
+
             if (inputDetector.functionPressed && !states.isTalking)
             {
 
@@ -201,7 +250,7 @@ public class DialoguePlayerManager : MonoBehaviour
                 }
             }
 
-            
+
         }
 
 
@@ -212,7 +261,7 @@ public class DialoguePlayerManager : MonoBehaviour
 
         if (functionDetector.simpleNPCDialogueManager != null && states.isIdle && timeUntilCanTalk <= 0)
         {
-            
+
 
 
             if (inputDetector.functionPressed && !envolvedInDialogue)
@@ -244,28 +293,28 @@ public class DialoguePlayerManager : MonoBehaviour
 
         if (functionDetector.actorNPCDialogueManager != null && states.isIdle && timeUntilCanTalk <= 0)
         {
-
+            
 
             // Starting the dialogue
             if (inputDetector.functionPressed && !envolvedInDialogue)
             {
                 // Do something when the F key is pressed
-                
-                indexLine = 0; 
-                TalkToActorNPC(functionDetector.actorNPCDialogueManager.npcDialogue);
-                
+
+                Debug.Log("Hablemos con el Actor NPC"); 
+                StartCoroutine(TalkToActorNPC(functionDetector.actorNPCDialogueManager.npcDialogue));
+
 
                 // Add your own logic here
             }
 
             // Moving to the Next Line or Finishing the Dialogue
-            else if (envolvedInDialogue && !currentActor.isTalking)
+            else if (envolvedInDialogue && !dialogueSystem.currentActor.isTalking && waitingToContinue)
             {
                 if (inputDetector.functionPressed)
 
                 {
-                    Debug.Log("Vamos a mostrar la siguiente linea!"); 
-                    DisplayNextActingDialogueLine();
+                    Debug.Log("Vamos a mostrar la siguiente linea!");
+                    StartCoroutine(dialogueSystem.DisplayNextActingDialogueLine());
 
 
                 }
@@ -273,7 +322,7 @@ public class DialoguePlayerManager : MonoBehaviour
         }
 
 
-
+        
         #endregion
 
     }
@@ -282,16 +331,16 @@ public class DialoguePlayerManager : MonoBehaviour
 
     public IEnumerator PlayerBubbleTalking(string text)  // text es la linea de diálogo actual leída por el lector. 
     {
-        
+
         int amountOfWords = CountWords(text); // Calculamos la cantidad de palabras
         float timeTalking = amountOfWords * timePerWords; // Calculamos la cantidad de tiempo que el personaje estará hablando
         // El texto de la burbuja de diálogo es el mismo que estará tipeado. 
         StartCoroutine(TypeSentence(text)); //Se comienza a tipear 
         // Debemos esperar a que se termine de tipear la palabra + un tiempo para lectura en función de la cantidad de palabras. 
         yield return new WaitForSeconds(timeToType + timePerWords);
-        
+
         StartCoroutine(AutoNextLine());
-        
+
     }
 
     #endregion
@@ -334,14 +383,14 @@ public class DialoguePlayerManager : MonoBehaviour
 
     public void ReadingDescriptor(DescriptorDialogue description)
     {
-        dialogueActorManager.readingDescription = true; 
+        dialogueActorManager.readingDescription = true;
         descriptionSentences.Clear();
         inputDetector.inputActivated = false;
         foreach (DescriptorLine line in description.descriptionLines)
         {
             descriptionSentences.Enqueue(line);
         }
-        readingDescription = true; 
+        readingDescription = true;
         DisplayNextDescriptionLine();
     }
 
@@ -374,16 +423,29 @@ public class DialoguePlayerManager : MonoBehaviour
 
     #region Talking to Actor NPC
 
-    public void TalkToActorNPC(NPCDialogue npcDialogue)
+    public IEnumerator TalkToActorNPC(DBRDialogue dialogue)
     {
-        //Getting the actors for the Dialogue; 
-        Debug.Log("Solicitando la lista de actores"); 
-        functionDetector.actorNPCDialogueManager.PassingTheActorsForSceneList();
+        Debug.Log("Comenzando a hablar con un Actor NPC"); 
+        inputDetector.SwitchInputOff();
 
-        
+        // 1- Clearing any value to avoid confussion
+
         // Clear the current dialogue sentences queue to start fresh.
         dialogueLines = null;
-        dialogueSystem.dialogueLines = null; 
+        dialogueSystem.dialogue = null;
+
+        // 2- Passing Needed info
+
+
+        //Getting the actors for the Dialogue; 
+        Debug.Log("Solicitando la lista de actores");
+        GettingTheActorsForSceneList();
+        GettingTheDialogueScript();
+
+
+
+        
+        indexLine = dialogue.entryIndex;
 
         /*
         // Loop through each SimpleDialogueLine in the NPCDialogue's line array.
@@ -392,30 +454,33 @@ public class DialoguePlayerManager : MonoBehaviour
             // Enqueue each dialogue line into the dialogueSentences queue.
             dialogueSentences.Enqueue(line);
         }
-        */
+      */
 
-        // Initialize dialogueLines array with the same length as npcDialogue.lines
-        dialogueLines = new DialogueLine[npcDialogue.lines.Length];
+        Debug.Log("Vamos a preparar las líneas para el diálogo");
+        Debug.Log("El dialogo tiene: " + dialogue.directedDialogue.Length + " lineas");
+        dialogueSystem.dialogueLines = new DialogueLine[dialogue.directedDialogue.Length];
 
-        // Use a for loop instead of foreach to copy the elements
-        for (int i = 0; i < npcDialogue.lines.Length; i++)
+        // Use a for loop instead of foreach to copy the elements QUIZÁS ESTO DEBERÍA ESTAR EN EL DIALOGUE SYSTEM SCRIPT
+        for (int i = 0; i < dialogue.directedDialogue.Length; i++)
         {
-            dialogueLines[i] = npcDialogue.lines[i];
+            Debug.Log("La linea es: " + dialogue.directedDialogue[i].dialogueLine);
             
+            dialogueSystem.dialogueLines[i] = dialogue.directedDialogue[i];
+
         }
 
-        dialogueSystem.dialogueLines = dialogueLines;
+        //dialogueSystem.dialogueLines = dialogueLines;
+        
+
 
         envolvedInDialogue = true;
-        inputDetector.SwitchInputOff();
-
-        DisplayNextActingDialogueLine();
 
 
+        StartCoroutine(dialogueSystem.DisplayNextActingDialogueLine());
+
+        yield return null;
 
 
-        // After enqueueing all dialogue sentences, display the next dialogue line in the queue.
-        //DisplayNextSimpleDialogueLine();
     }
 
 
@@ -466,7 +531,7 @@ public class DialoguePlayerManager : MonoBehaviour
         // Los tres siguientes son para limpiar los textos tanto del lector como del letrero. 
         bubbleText.text = "";
         typedLine = "";
-       
+
 
         // Si se acabaron las lineas del diàlogo, entonces se acaba el diàlogo. 
         if (descriptionSentences.Count == 0)
@@ -480,9 +545,9 @@ public class DialoguePlayerManager : MonoBehaviour
         DescriptorLine sentence = descriptionSentences.Dequeue();
 
         StartCoroutine(PlayerBubbleTalking(sentence.dialogueLine));  // To start the talking animation
-            
-        
-       
+
+
+
     }
 
     #endregion
@@ -541,102 +606,15 @@ public class DialoguePlayerManager : MonoBehaviour
 
     #endregion
 
-    #region Display Next Line on the Dialogue with an Actor NPC
-
-    public void DisplayNextActingDialogueLine()
-    {
-        // Los tres siguientes son para limpiar los textos tanto del lector como del letrero. 
-        foreach(DialogueActorManager actor in actorsInScene)
-        {
-            actor.bubbleText.text = "";
-            actor.typedLine = ""; 
-        }
-      
-
-        
-       
 
 
 
-
-
-        SetCurrentDialogueLine(indexLine);
-
-        if (currentLine.isEndOfDialogue)
-        {
-            Debug.Log("Finalizando el diálogo");
-            EndDialogue();
-            return;
-        }
-
-        currentActor = actorsInScene[currentLine.indexActorTalking];
-        dialogueSystem.currentActor = actorsInScene[currentLine.indexActorTalking];
-
-
-        // Clearing Bubbles. 
-        //line.actorTalking.bubbleText.text = ""; 
-
-        //foreach (ActorListening actorListening in line.actorsListening)
-        //{
-        //   actorListening.actorListening.bubbleText.text = "";
-        //}
-
-
-        #region Actor reading line
-
-        // Identify who is the actor talking this line. 
-        int i = currentLine.indexActorTalking; 
-        dialogueSystem.actorTalking = actorsInScene[i];
-        DialogueActorManager actorTalking = dialogueSystem.actorTalking;
-
-        //line.actorTalking.dialogueActorManager.isTalking = true;
-        Debug.Log("La linea a leer es: " + currentLine.dialogueLine); 
-        StartCoroutine(actorTalking.BubbleTalking(currentLine.dialogueLine));
-        
-
-        indexLine = indexLine + 1;
-
-        if (envolvedInDialogue && !dialogueActorManager.isTalking)
-        {
-            Debug.Log("Listo para la siguiente línea!"); 
-        }
-        /*
-
-        if (sentence.lineByPlayer)
-        {
-            dialogueActorManager.isTalking = true;
-
-            if (dialogueActorManager.isTalking)
-            {
-                StartCoroutine(BubbleTalking(sentence.dialogueLine));  // To start the talking animation
-            }
-        }
-        
-        
-        
-        else // El caso en que la línea la dice el NPC
-        {
-            functionDetector.simpleNPC.dialogueActorManager.isTalking = true;
-
-            if (functionDetector.simpleNPC.dialogueActorManager.isTalking)
-            {
-                StartCoroutine(functionDetector.simpleNPC.BubbleTalking(sentence.dialogueLine));
-            }
-            //functionDetector.sign.signBubble.text = sentence.dialogueLine;
-        }
-        */
-
-        #endregion
-    }
-
-    #endregion
-
-  
 
 
 
     #region General Bubble Talking
 
+    /*
     public IEnumerator BubbleTalking(string text)  // text es la linea de diálogo actual leída por el lector. 
     {
         Debug.Log("Bubble Talking!- Inicio");
@@ -650,7 +628,7 @@ public class DialoguePlayerManager : MonoBehaviour
         StartCoroutine(AutoNextLine());
         Debug.Log("Bubble Talking!- final!");
     }
-
+    */
     #endregion
 
 
@@ -661,7 +639,7 @@ public class DialoguePlayerManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence)
     {
-        
+
         dialogueActorManager.isTalking = true;
         timeToType = sentence.Length * timePerLetter;
         foreach (char letter in sentence.ToCharArray())
@@ -675,7 +653,7 @@ public class DialoguePlayerManager : MonoBehaviour
             }
             yield return new WaitForSeconds(timePerLetter);
         }
-        
+
 
         dialogueActorManager.isTalking = false;
     }
@@ -684,11 +662,11 @@ public class DialoguePlayerManager : MonoBehaviour
 
     #region Ending Dialogue
 
-    void EndDialogue()
+    public void EndDialogue()
     {
-        timeUntilCanTalk = dialogueRestTime; 
+        timeUntilCanTalk = dialogueRestTime;
 
-       
+
         readingSign = false;
         readingDescription = false;
         envolvedInDialogue = false;
@@ -705,7 +683,7 @@ public class DialoguePlayerManager : MonoBehaviour
         }
 
 
-       
+
         Debug.Log("End of dialogue");
     }
 
@@ -720,7 +698,7 @@ public class DialoguePlayerManager : MonoBehaviour
         yield return new WaitForSeconds(timeForAutoChange);
         if (readingSign && !dialogueActorManager.isTalking)
         {
-            
+
             DisplayNextSignLine();
         }
 
@@ -728,10 +706,10 @@ public class DialoguePlayerManager : MonoBehaviour
         {
             DisplayNextSimpleDialogueLine();
         }
-        
+
         if (readingDescription && !dialogueActorManager.isTalking)
         {
-            
+
             DisplayNextDescriptionLine();
         }
 
@@ -760,13 +738,13 @@ public class DialoguePlayerManager : MonoBehaviour
 
     private void HandleOutOfRangeIndex()
     {
-        EndDialogue(); 
+        EndDialogue();
     }
 
     #endregion
 
 
-    public void TalkToNPC(string aiResponse)
+    public void TalkToAINPC(string aiResponse)
     {
         // Create a new SimpleDialogueLine with the AI response
         SimpleDialogueLine newLine = new SimpleDialogueLine
@@ -783,7 +761,40 @@ public class DialoguePlayerManager : MonoBehaviour
     }
 
 
+    public void GettingTheActorsForSceneList()
+    {
+        Debug.Log("Pasando la lista de actores");
+        foreach (DialogueActorManager actor in functionDetector.actorNPCDialogueManager.matchedActorsList)
+        {
+            actorsInScene.Add(actor);
+            if (dialogueSystem != null)
+            {
+                dialogueSystem.matchedActorsList.Add(actor);
+            }
+        }
+    }
 
+    public void GettingTheDialogueScript()
+    {
+        Debug.Log("Obteniendo el guión");
+        dialogueSystem.dialogue = null;
+        
+        if (functionDetector.actorNPCDialogueManager.npcDialogue != null)
+        { 
+        dialogueSystem.dialogue = functionDetector.actorNPCDialogueManager.npcDialogue;
+            Debug.Log("DIÁLOGO ENTREGADO!");
+        }
 
+        else
+        {
+            Debug.Log("No hay diálogo para entregar"); 
+        }
+
+    }
+
+    public IEnumerator PositioningPlayerToTalk()
+    {
+        yield return null;
+    }
 }
 

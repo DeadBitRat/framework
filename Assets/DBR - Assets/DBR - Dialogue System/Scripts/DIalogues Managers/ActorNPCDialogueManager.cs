@@ -6,16 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class ActorNPCDialogueManager : MonoBehaviour
 {
+    [HideInInspector]
     public DialoguePlayerManager playerDialogueManager;
-    public bool isTalking;
+    [HideInInspector]
+    private DBRDialogueSystem dialogueSystem;
+    
 
-    public TextMeshPro npcBubble;
+    
 
-    public List<string> actorsInScene;
+    private List<string> actorsInScene;
     public List<DialogueActorManager> matchedActorsList;
 
-    public NPCDialogue npcDialogue;
+    public DBRDialogue npcDialogue;
 
+
+    [Header("NPC Dialogue Settings")]
     public bool talkOnProximity;
     public NPCDialogue proximityDialogue;
 
@@ -30,12 +35,16 @@ public class ActorNPCDialogueManager : MonoBehaviour
     public float aloneTalkInterval;
     public NPCDialogue aloneDialogue;
 
+
+    [Header("NPC Talking Settings")]
+    public TextMeshPro npcBubble;
+
     public float timePerWords;
     public float timeToType;
     public float timeForAutoChange;
     public float timePerLetter;
 
-    public string typedLine;
+    private string typedLine;
 
 
 
@@ -51,25 +60,19 @@ public class ActorNPCDialogueManager : MonoBehaviour
 
         }
 
+        
+        dialogueSystem = FindObjectOfType<DBRDialogueSystem>();
+
     
         FindAndAddActors();
     }
 
-   void Awake()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (talksAlone && !talkingAlone)
-        {
-            StartCoroutine(TalkingAlone());
-        }
+        if (talkingAlone) { }
 
-
-       
 
     
     }
@@ -119,12 +122,5 @@ public class ActorNPCDialogueManager : MonoBehaviour
         }
     }
 
-    public void PassingTheActorsForSceneList()
-    {
-        Debug.Log("Pasando la lista de actores"); 
-        foreach (DialogueActorManager actor in matchedActorsList)
-        {
-            playerDialogueManager.actorsInScene.Add(actor); 
-        }
-    }
+
 }

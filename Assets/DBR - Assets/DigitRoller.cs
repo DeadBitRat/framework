@@ -32,7 +32,7 @@ public class DigitRoller : MonoBehaviour
 
     public bool targetReached;
 
-    public AudioSource audio; 
+    public AudioSource audioSource; 
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,7 @@ public class DigitRoller : MonoBehaviour
         superior = numberPlates[currentIndex].superior;
         inferior = numberPlates[currentIndex].inferior;
 
-        audio = GetComponent<AudioSource>(); 
+        audioSource = GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
@@ -122,7 +122,7 @@ public class DigitRoller : MonoBehaviour
 
             CheckIfTargetReached();
 
-            audio.Play();
+            audioSource.Play();
 
             if (!targetReached)
             {
@@ -195,7 +195,7 @@ public class DigitRoller : MonoBehaviour
             }
 
             CheckIfTargetReached();
-            audio.Play();
+            audioSource.Play();
 
             if (!targetReached)
             {
