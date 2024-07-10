@@ -14,7 +14,7 @@ public class ChatBoxManager : MonoBehaviour
 
     public AICharacterDesign aiCharacter; // AI Character Design ScriptableObject
 
-    private string apiKey = "sk-proj-LwMNCxeltMW9QsvBDLg0T3BlbkFJz3guwEffI6qpUVRIrGLi"; // Your ChatGPT API key
+    private string apiKey = " "; // Your ChatGPT API key
     private string apiUrl = "https://api.openai.com/v1/chat/completions"; // Correct API endpoint for ChatGPT
 
     public int maxWords = 50; // Maximum number of words per response
