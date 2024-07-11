@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c8f28e1deacf19418bf383e4a6a7d64, type: 3}
-  m_Name: NPC Dialogue Test
+  m_Name: NPT Questions TEST
   m_EditorClassIdentifier: 
   actorsInScene:
   - Player
   - Master Soren
-  - Master Soren Simple NPC
   lines:
-  - nameOfLine: 0- Hello, I'm an NPC
+  - nameOfLine: 0- Hello I'm going to ask you some questions
     indexActorTalking: 1
     actorsListening: []
     preTalkingAnimation: {fileID: 0}
-    dialogueLine: 'Hello!  I''m an Actor NPC. I can do more than just talk to you. '
+    dialogueLine: Hello I'm going to ask you some questions
     actorTalkingActingClip: {fileID: 0}
     postTalkingAnimation: {fileID: 0}
     secondsToNextLine: 0
@@ -32,11 +31,11 @@ MonoBehaviour:
     nextLine: 0
     isEndOfDialogue: 0
     dialogueEventsName: 
-  - nameOfLine: '1- Player: Really? '
+  - nameOfLine: 1- Ok
     indexActorTalking: 0
     actorsListening: []
     preTalkingAnimation: {fileID: 0}
-    dialogueLine: 'Really?  '
+    dialogueLine: Ok
     actorTalkingActingClip: {fileID: 0}
     postTalkingAnimation: {fileID: 0}
     secondsToNextLine: 0
@@ -47,112 +46,7 @@ MonoBehaviour:
     nextLine: 0
     isEndOfDialogue: 0
     dialogueEventsName: 
-  - nameOfLine: Like What?!
-    indexActorTalking: 0
-    actorsListening: []
-    preTalkingAnimation: {fileID: 0}
-    dialogueLine: 'Like What? '
-    actorTalkingActingClip: {fileID: 0}
-    postTalkingAnimation: {fileID: 0}
-    secondsToNextLine: 0
-    isQuestion: 0
-    questionID: 
-    question: {fileID: 0}
-    nextLineDiffers: 0
-    nextLine: 0
-    isEndOfDialogue: 0
-    dialogueEventsName: 
-  - nameOfLine: 3- Watch!
-    indexActorTalking: 1
-    actorsListening: []
-    preTalkingAnimation: {fileID: 0}
-    dialogueLine: Watch!
-    actorTalkingActingClip: {fileID: 0}
-    postTalkingAnimation: {fileID: 0}
-    secondsToNextLine: 0
-    isQuestion: 0
-    questionID: 
-    question: {fileID: 0}
-    nextLineDiffers: 0
-    nextLine: 0
-    isEndOfDialogue: 0
-    dialogueEventsName: 
-  - nameOfLine: 4- AAAA
-    indexActorTalking: 1
-    actorsListening: []
-    preTalkingAnimation: {fileID: 7400000, guid: 3d877b26fcefd8448a746be8c096c05d, type: 2}
-    dialogueLine: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-    actorTalkingActingClip: {fileID: 7400000, guid: 8a9d6d7f54daf254e8414a9e151ddb8b, type: 2}
-    postTalkingAnimation: {fileID: 7400000, guid: 887657defd9f41d428279fd8779e5fa0, type: 2}
-    secondsToNextLine: 0
-    isQuestion: 0
-    questionID: 
-    question: {fileID: 0}
-    nextLineDiffers: 0
-    nextLine: 0
-    isEndOfDialogue: 0
-    dialogueEventsName: 
-  - nameOfLine: '5- Let that guy over there... '
-    indexActorTalking: 1
-    actorsListening: []
-    preTalkingAnimation: {fileID: 0}
-    dialogueLine: 'Let that guy over there do THAT! '
-    actorTalkingActingClip: {fileID: 0}
-    postTalkingAnimation: {fileID: 0}
-    secondsToNextLine: 0
-    isQuestion: 0
-    questionID: 
-    question: {fileID: 0}
-    nextLineDiffers: 0
-    nextLine: 0
-    isEndOfDialogue: 0
-    dialogueEventsName: 
-  - nameOfLine: '6- No, I can''t do that. '
-    indexActorTalking: 2
-    actorsListening: []
-    preTalkingAnimation: {fileID: 0}
-    dialogueLine: 'No, I can''t do that. '
-    actorTalkingActingClip: {fileID: 0}
-    postTalkingAnimation: {fileID: 0}
-    secondsToNextLine: 0
-    isQuestion: 0
-    questionID: 
-    question: {fileID: 0}
-    nextLineDiffers: 0
-    nextLine: 0
-    isEndOfDialogue: 0
-    dialogueEventsName: 
-  - nameOfLine: 7- I also can ask questions
-    indexActorTalking: 1
-    actorsListening: []
-    preTalkingAnimation: {fileID: 0}
-    dialogueLine: I also can ask questions...
-    actorTalkingActingClip: {fileID: 0}
-    postTalkingAnimation: {fileID: 0}
-    secondsToNextLine: 0
-    isQuestion: 0
-    questionID: 
-    question: {fileID: 0}
-    nextLineDiffers: 0
-    nextLine: 0
-    isEndOfDialogue: 0
-    dialogueEventsName: 
-  - nameOfLine: '8- Want me to ask you something? '
-    indexActorTalking: 1
-    actorsListening: []
-    preTalkingAnimation: {fileID: 0}
-    dialogueLine: 'Want me to ask you something? '
-    actorTalkingActingClip: {fileID: 0}
-    postTalkingAnimation: {fileID: 0}
-    secondsToNextLine: 0
-    isQuestion: 1
-    questionID: TestQuestion
-    question: {fileID: 0}
-    nextLineDiffers: 0
-    nextLine: 0
-    isEndOfDialogue: 0
-    dialogueEventsName: 
-  - nameOfLine: 
+  - nameOfLine: 2- Test Questions
     indexActorTalking: 0
     actorsListening: []
     preTalkingAnimation: {fileID: 0}
@@ -160,10 +54,70 @@ MonoBehaviour:
     actorTalkingActingClip: {fileID: 0}
     postTalkingAnimation: {fileID: 0}
     secondsToNextLine: 0
+    isQuestion: 1
+    questionID: 
+    question: {fileID: 0}
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: 3- END OF DIALOGUE
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: What do you choose?
+    actorTalkingActingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
     isQuestion: 0
     questionID: 
     question: {fileID: 0}
     nextLineDiffers: 0
     nextLine: 0
+    isEndOfDialogue: 1
+    dialogueEventsName: 
+  - nameOfLine: "4- Ya hemos hablado. Adi\xF3s. "
+    indexActorTalking: 0
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: "Ya hemos hablando... Adi\xF3s. "
+    actorTalkingActingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    questionID: 
+    question: {fileID: 0}
+    nextLineDiffers: 1
+    nextLine: 3
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: 5- Done!
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: Done!
+    actorTalkingActingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    questionID: 
+    question: {fileID: 0}
+    nextLineDiffers: 0
+    nextLine: 0
+    isEndOfDialogue: 0
+    dialogueEventsName: 
+  - nameOfLine: 
+    indexActorTalking: 1
+    actorsListening: []
+    preTalkingAnimation: {fileID: 0}
+    dialogueLine: Done!
+    actorTalkingActingClip: {fileID: 0}
+    postTalkingAnimation: {fileID: 0}
+    secondsToNextLine: 0
+    isQuestion: 0
+    questionID: 
+    question: {fileID: 0}
+    nextLineDiffers: 1
+    nextLine: 3
     isEndOfDialogue: 0
     dialogueEventsName: 

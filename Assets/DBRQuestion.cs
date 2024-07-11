@@ -33,6 +33,14 @@ public class DBRQuestion : MonoBehaviour
     [Header("Question Settings")]
     public int option5NextLineIndex;
 
+    [Header("Events to Play when Asked")]
+
+    [Tooltip("0 for no change")]
+    public int indexEntryNumberWhenAsked; 
+
+    public UnityEvent toExecuteWhenAsked; 
+
+
     [Header("DBR Interactive Dialogue Elements")]
     public GameObject dialogueCanvas;
     public GameObject dialoguePanel;
@@ -53,11 +61,14 @@ public class DBRQuestion : MonoBehaviour
     public TMP_Text option4ButtonText;
     public TMP_Text option5ButtonText;
 
+    [Header("Dialogue Elements")]
+    public DBRDialogue dialogue; 
+
 
 
     private void OnEnable()
     {
-       
+        //toExecuteWhenAsked.Invoke(); 
     }
 
 
@@ -65,8 +76,8 @@ public class DBRQuestion : MonoBehaviour
     void Start()
     {
         TurnOffDialoguePanels();
+        toExecuteWhenAsked.AddListener(ChangeEntryIndexNumber);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -104,6 +115,27 @@ public class DBRQuestion : MonoBehaviour
         dialoguePanel.SetActive(false);
         inputPanel.SetActive(false);
         answerPanel.SetActive(false);
+    }
+
+    public void ChangeEntryIndexNumber()
+    {
+        if (indexEntryNumberWhenAsked != 0)
+        {
+
+       
+        Debug.Log("Cambianding el dialogue entry index!"); 
+        dialogue.entryIndex = indexEntryNumberWhenAsked;
+        }
+    }
+
+
+    public void InvokeEventsWhenAsked()
+    {
+        Debug.Log("Según la pregunta, el dialogo es: " + dialogue); 
+        Debug.Log("Ejecutando Eventos cuando se pregunta"); 
+        toExecuteWhenAsked.Invoke();
+        ChangeEntryIndexNumber();
+        Debug.Log("Eventos ejecutados (supueeestamente)");
     }
 
 }

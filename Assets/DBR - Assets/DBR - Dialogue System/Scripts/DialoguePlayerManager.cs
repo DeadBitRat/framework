@@ -445,7 +445,7 @@ public class DialoguePlayerManager : MonoBehaviour
 
 
         
-        indexLine = dialogue.entryIndex;
+        dialogueSystem.indexLine = dialogue.entryIndex;
 
         /*
         // Loop through each SimpleDialogueLine in the NPCDialogue's line array.

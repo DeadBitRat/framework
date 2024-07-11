@@ -130,7 +130,7 @@ public class DBRDialogueSystem : MonoBehaviour
 
     #region Display Next Acting Dialogue Line
 
-
+    // ||||||||||||||||||||||||||||||| DISPLAY NEXT ACTING DIALOGUE LINE ||||||||||||||||||||||||||||||||||||||||||
 
     public IEnumerator DisplayNextActingDialogueLine()
     {
@@ -195,6 +195,19 @@ public class DBRDialogueSystem : MonoBehaviour
 
         if (currentLine.isQuestion)
         {
+            Debug.Log("Dialogue System sabe que viene una pregunta"); 
+            currentLine.question.dialogue = dialogue;
+            if (currentLine.question.dialogue == null)
+            {
+                Debug.LogWarning("El diálogo no se ha pasado correctamente"); 
+            }
+
+            else
+            {
+                Debug.Log("El dialogo es: " + dialogue); 
+            }
+            currentLine.question.InvokeEventsWhenAsked(); 
+
             yield return new WaitUntil(() => currentActor.questionAnswered);
         }
 
@@ -270,9 +283,9 @@ public class DBRDialogueSystem : MonoBehaviour
     {
         if (indexLine >= 0 && indexLine < dialogueLines.Count())
         {
-            Debug.Log("Comenzando la revisión");
+            
             currentLine = dialogueLines[indexLine];
-            Debug.Log("Setting the current line which is: " + currentLine.dialogueLine); 
+            
 
         }
         else

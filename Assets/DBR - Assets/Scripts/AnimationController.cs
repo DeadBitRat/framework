@@ -181,7 +181,9 @@ public class AnimationController : MonoBehaviour
         
         if (states.isTalking && !states.isActing)
         {
-            animator.Play(talkingAnimation.name); 
+            if (talkingAnimation != null)
+            { animator.Play(talkingAnimation.name); }
+
         }
         
         
