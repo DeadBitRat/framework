@@ -189,8 +189,10 @@ public class DialogueActorManager : MonoBehaviour
             dialogueSystem.AssignOptionsToQuestions(); 
 
             yield return new WaitUntil(() => questionAnswered);
+            Debug.Log("Pregunta respondida!!! Seguimos..."); 
+            dialogueSystem.currentLine.question.TurnOffDialoguePanels();
         }
-        
+
 
 
         #endregion
@@ -198,10 +200,20 @@ public class DialogueActorManager : MonoBehaviour
 
         #region The post-Dialogue Event!
 
+       
+       
+        
+
         // Invoke post-dialogue events if they exist.
-        if (dialogueSystem.hayEventos)
+        if (dialogueSystem.dialogue.directedDialogue[dialogueSystem.indexLine].evento != null)
         {
-            dialogueSystem.currentEvents.events.postDialogueEvents?.Invoke();
+            Debug.Log("SIIIIII HAY EVENTOS POST-DIALOGO en la linea " + dialogueSystem.indexLine + "!!!");
+            if (!dialogueSystem.currentLine.evento.triggered) { dialogueSystem.currentLine.evento.TriggerEvents(); }
+        }
+
+        else
+        {
+            Debug.Log("NO HAY EVENTOS POST-DIALOGO en la linea " + dialogueSystem.indexLine + "!!!");
         }
 
         #endregion
@@ -210,8 +222,19 @@ public class DialogueActorManager : MonoBehaviour
 
         #region Displaying Next Line
 
-      
-            StartCoroutine(dialogueSystem.DisplayNextActingDialogueLine());
+
+        if (dialogueSystem.currentLine.nextLineDiffers)
+        {
+            dialogueSystem.indexLine = dialogueSystem.currentLine.nextLine;
+        }
+        else
+        {
+            dialogueSystem.indexLine = dialogueSystem.indexLine + 1;
+        }
+
+
+
+        StartCoroutine(dialogueSystem.DisplayNextActingDialogueLine());
    
 
         #endregion
@@ -309,6 +332,7 @@ public class DialogueActorManager : MonoBehaviour
 
     }
 
+  
    
 
   

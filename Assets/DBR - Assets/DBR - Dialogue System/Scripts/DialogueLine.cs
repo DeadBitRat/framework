@@ -48,7 +48,8 @@ public class DialogueLine
     [Header("Events")]
     [Space(10)]
 
-    public string dialogueEventsName;
+    public DBRLineEvent lineEventBeforeTheLine;
+    public DBRLineEvent evento; 
 
 }
 

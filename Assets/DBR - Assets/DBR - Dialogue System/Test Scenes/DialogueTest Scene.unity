@@ -153,6 +153,7 @@ Transform:
   m_Children:
   - {fileID: 2047407850}
   - {fileID: 859128434}
+  - {fileID: 1642581503}
   m_Father: {fileID: 565712100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &73323405
@@ -167,6 +168,7 @@ GameObject:
   - component: {fileID: 73323410}
   - component: {fileID: 73323409}
   - component: {fileID: 73323408}
+  - component: {fileID: 73323411}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -276,6 +278,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73323405}
   m_CullTransparentMesh: 1
+--- !u!114 &73323411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73323405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb99245e7426e0a44bc6f2b4e4cbdfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueSystem: {fileID: 565712101}
+  optionEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &99091088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,27 +2253,14 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   currentActor: {fileID: 0}
   currentEvents: {fileID: 0}
   hayEventos: 0
   chosenOption: 0
   indexLine: 0
-  eventoPrueba:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1791047940}
-        m_TargetAssemblyTypeName: DBRStorySystem, Assembly-CSharp
-        m_MethodName: TestFromStorySystem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  lineEvent: {fileID: 0}
 --- !u!1 &605423242
 GameObject:
   m_ObjectHideFlags: 0
@@ -3551,7 +3556,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 775417047193599417}
   m_Father: {fileID: 57007927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &859128435
@@ -3585,7 +3591,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 5670083049542478100}
   - nameOfLine: 1- Ok
     indexActorTalking: 0
     actorsListening: []
@@ -3600,7 +3607,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: 2- Test Questions
     indexActorTalking: 0
     actorsListening: []
@@ -3615,7 +3623,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: 3- END OF DIALOGUE
     indexActorTalking: 0
     actorsListening: []
@@ -3630,7 +3639,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 1
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: "4- Ya hemos hablado. Adi\xF3s. "
     indexActorTalking: 0
     actorsListening: []
@@ -3645,7 +3655,8 @@ MonoBehaviour:
     nextLineDiffers: 1
     nextLine: 3
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: 5- Done!
     indexActorTalking: 1
     actorsListening: []
@@ -3660,7 +3671,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: 
     indexActorTalking: 1
     actorsListening: []
@@ -3675,7 +3687,8 @@ MonoBehaviour:
     nextLineDiffers: 1
     nextLine: 3
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   dialogueSystem: {fileID: 565712101}
   entryIndex: 0
 --- !u!1 &904108817
@@ -3913,6 +3926,7 @@ GameObject:
   - component: {fileID: 952117375}
   - component: {fileID: 952117374}
   - component: {fileID: 952117373}
+  - component: {fileID: 952117376}
   m_Layer: 0
   m_Name: Button (2)
   m_TagString: Untagged
@@ -4034,6 +4048,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952117370}
   m_CullTransparentMesh: 1
+--- !u!114 &952117376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952117370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb99245e7426e0a44bc6f2b4e4cbdfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueSystem: {fileID: 565712101}
+  optionEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &965231408
 GameObject:
   m_ObjectHideFlags: 0
@@ -4486,6 +4516,7 @@ GameObject:
   - component: {fileID: 1132850136}
   - component: {fileID: 1132850135}
   - component: {fileID: 1132850134}
+  - component: {fileID: 1132850137}
   m_Layer: 0
   m_Name: Button (4)
   m_TagString: Untagged
@@ -4595,6 +4626,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132850131}
   m_CullTransparentMesh: 1
+--- !u!114 &1132850137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132850131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb99245e7426e0a44bc6f2b4e4cbdfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueSystem: {fileID: 565712101}
+  optionEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1147911487
 GameObject:
   m_ObjectHideFlags: 0
@@ -4817,6 +4864,7 @@ GameObject:
   - component: {fileID: 1249934474}
   - component: {fileID: 1249934473}
   - component: {fileID: 1249934472}
+  - component: {fileID: 1249934475}
   m_Layer: 0
   m_Name: Button (5)
   m_TagString: Untagged
@@ -4926,6 +4974,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249934469}
   m_CullTransparentMesh: 1
+--- !u!114 &1249934475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249934469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb99245e7426e0a44bc6f2b4e4cbdfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueSystem: {fileID: 565712101}
+  optionEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1257264724
 GameObject:
   m_ObjectHideFlags: 0
@@ -5775,6 +5839,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7b6cec94e00e6848b11233192c39846, type: 3}
+--- !u!1 &1642581502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642581503}
+  - component: {fileID: 1642581504}
+  m_Layer: 0
+  m_Name: InteractiveMethods
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1642581503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642581502}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 57007927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1642581504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642581502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9accd902d40f52a4d867c06832d8cc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1677875833
 GameObject:
   m_ObjectHideFlags: 0
@@ -7282,7 +7390,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: '1- Player: Really? '
     indexActorTalking: 0
     actorsListening: []
@@ -7297,7 +7406,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: Like What?!
     indexActorTalking: 0
     actorsListening: []
@@ -7312,7 +7422,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: 3- Watch!
     indexActorTalking: 1
     actorsListening: []
@@ -7327,7 +7438,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: 4- AAAA
     indexActorTalking: 1
     actorsListening: []
@@ -7342,7 +7454,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: '5- Let that guy over there... '
     indexActorTalking: 1
     actorsListening: []
@@ -7357,7 +7470,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: '6- No, I can''t do that. '
     indexActorTalking: 2
     actorsListening: []
@@ -7372,7 +7486,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: 7- I also can ask questions
     indexActorTalking: 1
     actorsListening: []
@@ -7387,7 +7502,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: '8- Want me to ask you something? '
     indexActorTalking: 1
     actorsListening: []
@@ -7398,11 +7514,12 @@ MonoBehaviour:
     secondsToNextLine: 0
     isQuestion: 1
     questionID: TestQuestion
-    question: {fileID: 1935803170465543464}
+    question: {fileID: 0}
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   - nameOfLine: 
     indexActorTalking: 0
     actorsListening: []
@@ -7417,7 +7534,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   dialogueSystem: {fileID: 565712101}
   entryIndex: 0
 --- !u!114 &2047407852
@@ -7662,6 +7780,7 @@ GameObject:
   - component: {fileID: 2110900492}
   - component: {fileID: 2110900491}
   - component: {fileID: 2110900490}
+  - component: {fileID: 2110900493}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -7783,6 +7902,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110900487}
   m_CullTransparentMesh: 1
+--- !u!114 &2110900493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110900487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb99245e7426e0a44bc6f2b4e4cbdfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueSystem: {fileID: 565712101}
+  optionEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2112622680
 GameObject:
   m_ObjectHideFlags: 0
@@ -8033,6 +8168,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &775417047193599417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724272851896169873}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 859128434}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1083251865479984346
 Transform:
   m_ObjectHideFlags: 0
@@ -8274,22 +8424,10 @@ MonoBehaviour:
   option4NextLineIndex: 0
   option5Text: 
   option5NextLineIndex: 0
-  indexEntryNumberWhenAsked: 4
+  indexEntryNumberWhenAsked: 0
   toExecuteWhenAsked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1935803170465543464}
-        m_TargetAssemblyTypeName: DBRQuestion, Assembly-CSharp
-        m_MethodName: ChangeEntryIndexNumber
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   dialogueCanvas: {fileID: 1518015699}
   dialoguePanel: {fileID: 2112622680}
   inputPanel: {fileID: 115402828}
@@ -8654,7 +8792,8 @@ MonoBehaviour:
     nextLineDiffers: 0
     nextLine: 0
     isEndOfDialogue: 0
-    dialogueEventsName: 
+    lineEventBeforeTheLine: {fileID: 0}
+    evento: {fileID: 0}
   currentActor: {fileID: 0}
   indexLine: 0
   cutscene: {fileID: 0}
@@ -8834,6 +8973,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4751284233598313323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3724272851896169873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 775417047193599417}
+  - component: {fileID: 5670083049542478100}
+  m_Layer: 0
+  m_Name: LineChangeEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!114 &3763242308130657485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9372,6 +9528,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: {fileID: 4015128941774385271}
   shadow: {fileID: 6208556217729073860}
+--- !u!114 &5670083049542478100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724272851896169873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b237d0919fa5be40ada010980f608de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeALine: 1
+  dialogue: {fileID: 859128435}
+  indexToChange: 0
+  newLine: 'Hello Again! I''ll Ask you again... '
+  triggered: 0
 --- !u!114 &5761102096168217675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10511,7 +10684,7 @@ GameObject:
   - component: {fileID: 1187644200510641868}
   - component: {fileID: 1935803170465543464}
   m_Layer: 0
-  m_Name: Question
+  m_Name: Question Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

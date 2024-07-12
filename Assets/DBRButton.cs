@@ -26,6 +26,8 @@ public class DBRButton : MonoBehaviour
         {
             Debug.LogError("Button component not found on the GameObject.");
         }
+
+        optionEvents.AddListener(dialogueSystem.AnswerQuestion); 
     }
 
    public void OnButtonClick()

@@ -300,7 +300,7 @@ public class DialoguePlayerManager : MonoBehaviour
             {
                 // Do something when the F key is pressed
 
-                Debug.Log("Hablemos con el Actor NPC"); 
+                
                 StartCoroutine(TalkToActorNPC(functionDetector.actorNPCDialogueManager.npcDialogue));
 
 
@@ -313,7 +313,7 @@ public class DialoguePlayerManager : MonoBehaviour
                 if (inputDetector.functionPressed)
 
                 {
-                    Debug.Log("Vamos a mostrar la siguiente linea!");
+                  
                     StartCoroutine(dialogueSystem.DisplayNextActingDialogueLine());
 
 
@@ -425,7 +425,7 @@ public class DialoguePlayerManager : MonoBehaviour
 
     public IEnumerator TalkToActorNPC(DBRDialogue dialogue)
     {
-        Debug.Log("Comenzando a hablar con un Actor NPC"); 
+       
         inputDetector.SwitchInputOff();
 
         // 1- Clearing any value to avoid confussion
@@ -438,7 +438,7 @@ public class DialoguePlayerManager : MonoBehaviour
 
 
         //Getting the actors for the Dialogue; 
-        Debug.Log("Solicitando la lista de actores");
+        
         GettingTheActorsForSceneList();
         GettingTheDialogueScript();
 
@@ -456,14 +456,14 @@ public class DialoguePlayerManager : MonoBehaviour
         }
       */
 
-        Debug.Log("Vamos a preparar las líneas para el diálogo");
-        Debug.Log("El dialogo tiene: " + dialogue.directedDialogue.Length + " lineas");
+        //Debug.Log("Vamos a preparar las líneas para el diálogo");
+        //Debug.Log("El dialogo tiene: " + dialogue.directedDialogue.Length + " lineas");
         dialogueSystem.dialogueLines = new DialogueLine[dialogue.directedDialogue.Length];
 
         // Use a for loop instead of foreach to copy the elements QUIZÁS ESTO DEBERÍA ESTAR EN EL DIALOGUE SYSTEM SCRIPT
         for (int i = 0; i < dialogue.directedDialogue.Length; i++)
         {
-            Debug.Log("La linea es: " + dialogue.directedDialogue[i].dialogueLine);
+            //Debug.Log("La linea es: " + dialogue.directedDialogue[i].dialogueLine);
             
             dialogueSystem.dialogueLines[i] = dialogue.directedDialogue[i];
 
@@ -763,7 +763,7 @@ public class DialoguePlayerManager : MonoBehaviour
 
     public void GettingTheActorsForSceneList()
     {
-        Debug.Log("Pasando la lista de actores");
+        //Debug.Log("Pasando la lista de actores");
         foreach (DialogueActorManager actor in functionDetector.actorNPCDialogueManager.matchedActorsList)
         {
             actorsInScene.Add(actor);
@@ -776,13 +776,13 @@ public class DialoguePlayerManager : MonoBehaviour
 
     public void GettingTheDialogueScript()
     {
-        Debug.Log("Obteniendo el guión");
+        //Debug.Log("Obteniendo el guión");
         dialogueSystem.dialogue = null;
         
         if (functionDetector.actorNPCDialogueManager.npcDialogue != null)
         { 
         dialogueSystem.dialogue = functionDetector.actorNPCDialogueManager.npcDialogue;
-            Debug.Log("DIÁLOGO ENTREGADO!");
+            //Debug.Log("DIÁLOGO ENTREGADO!");
         }
 
         else
@@ -795,6 +795,12 @@ public class DialoguePlayerManager : MonoBehaviour
     public IEnumerator PositioningPlayerToTalk()
     {
         yield return null;
+    }
+
+    public void AnswerQuestion()
+    {
+        Debug.Log("Respondiendo a la preguntaaaaaa"); 
+        currentActor.questionAnswered = true;
     }
 }
 

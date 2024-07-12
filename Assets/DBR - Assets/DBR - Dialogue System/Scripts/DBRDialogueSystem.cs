@@ -34,7 +34,7 @@ public class DBRDialogueSystem : MonoBehaviour
 
     public int indexLine = 0;
 
-    public UnityEvent eventoPrueba; 
+    public DBRLineEvent lineEvent; 
 
 
 
@@ -134,11 +134,11 @@ public class DBRDialogueSystem : MonoBehaviour
 
     public IEnumerator DisplayNextActingDialogueLine()
     {
-        Debug.Log("Displaying Next Acting Dialogue Line from the Dialogue System!"); 
+        //Debug.Log("Displaying Next Acting Dialogue Line from the Dialogue System!"); 
         // Clear the texts of both the reader and the signboard.
         foreach (DialogueActorManager actor in matchedActorsList)
         {
-            Debug.Log("Limpiando las burbujas de " + actor); 
+            //Debug.Log("Limpiando las burbujas de " + actor); 
             actor.bubbleText.text = "";
             actor.typedLine = "";
         }
@@ -167,7 +167,7 @@ public class DBRDialogueSystem : MonoBehaviour
         // Identify who is the actor talking this line.
         int i = currentLine.indexActorTalking;
 
-        Debug.Log("La línea actual es: " + i); 
+        Debug.Log("El índex del Actor actual es: " + i); 
 
         actorTalking = matchedActorsList[i];
 
@@ -182,7 +182,7 @@ public class DBRDialogueSystem : MonoBehaviour
         Debug.Log("Hay Eventos pre-dialogos?");
         if (hayEventos)
         {
-            Debug.Log("Hay eventos pre-diálogo!"); 
+            //Debug.Log("Hay eventos pre-diálogo!"); 
             currentEvents.events.preDialogueEvents?.Invoke();
         }
 
@@ -213,14 +213,9 @@ public class DBRDialogueSystem : MonoBehaviour
 
         #endregion
 
-        if (currentLine.nextLineDiffers)
-        {
-            indexLine = currentLine.nextLine;
-        }
-        else
-        {
-            indexLine = indexLine + 1;
-        }
+       
+
+
 
 
 
@@ -308,6 +303,9 @@ public class DBRDialogueSystem : MonoBehaviour
 
     public void EndDialogue()
     {
+        // Turn off Interactive Panels
+        
+
 
         foreach (DialogueActorManager actor in matchedActorsList)
         {

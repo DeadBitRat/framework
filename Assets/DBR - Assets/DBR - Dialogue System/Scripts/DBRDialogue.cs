@@ -36,15 +36,18 @@ public class DBRDialogue : MonoBehaviour
         {
             if (writtenDialogue != null)
             {
-                actorsInScene = writtenDialogue.actorsInScene; 
+                actorsInScene = writtenDialogue.actorsInScene;
 
-                directedDialogue = new DialogueLine[writtenDialogue.lines.Length];
-                int i = 0;
-                foreach (DialogueLine line in writtenDialogue.lines)
+                if (directedDialogue == null)
                 {
-                   
-                    directedDialogue[i] = writtenDialogue.lines[i];
-                    i++;
+                    directedDialogue = new DialogueLine[writtenDialogue.lines.Length];
+                    int i = 0;
+                    foreach (DialogueLine line in writtenDialogue.lines)
+                    {
+
+                        directedDialogue[i] = writtenDialogue.lines[i];
+                        i++;
+                    }
                 }
             }
 
